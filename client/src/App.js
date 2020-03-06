@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import KeepMeAliveContainer from './containers/KeepMeAliveContainer.js';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <KeepMeAliveContainer/>
   );
 }
 
