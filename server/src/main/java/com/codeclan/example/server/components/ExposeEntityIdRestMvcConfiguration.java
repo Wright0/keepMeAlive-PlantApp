@@ -7,7 +7,6 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 import org.springframework.stereotype.Component;
 
-import java.awt.print.Book;
 
 @Component
 public class ExposeEntityIdRestMvcConfiguration extends RepositoryRestConfigurerAdapter {
@@ -19,4 +18,3 @@ public class ExposeEntityIdRestMvcConfiguration extends RepositoryRestConfigurer
         config.exposeIdsFor(Game.class);
     }
 }
-x
