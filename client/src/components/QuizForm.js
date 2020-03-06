@@ -3,7 +3,30 @@ import React from 'react';
 const QuizForm = (props) => {
 
   return (
-    <p>I am the quiz form</p>
+      <form>
+        <label for="watering" >Watering Frequency:</label>
+        <br/>
+        <input type="range" id="watering" min="0" max="10" />
+        <br/>
+        <label for="fertilisation" >Fertilisation Frequency:</label>
+        <br/>
+        <input type="range" id="fertilisation" min="0" max="10" />
+        <br/>
+
+        <label for="light" >Light Requirement:</label>
+        <br/>
+        <select  id="light">
+          <option value="low">Low </option>
+          <option value="medium">Medium </option>
+          <option value="direct">Direct </option>
+        </select>
+        <br/>
+        <label for="temperature" >Temperature:</label>
+        <br/>
+        <input type="range" id="temperature" min="0" max="10" />
+        <br/>
+
+      </form>
   )
 }
 

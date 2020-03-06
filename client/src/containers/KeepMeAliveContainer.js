@@ -10,7 +10,17 @@ class KeepMeAliveContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      name: "Andrew"
+      plants: [
+        {
+          id:1,
+          name: "Monstera"
+        },
+        {
+          id:2,
+          name: "Rubber Plant"
+        }
+      ],
+      selectedPlantId:1
     }
   }
 
@@ -18,7 +28,7 @@ class KeepMeAliveContainer extends Component {
     return (
       <>
       <h1>I am the container of the app</h1>
-      <SelectPlant/>
+      <SelectPlant plants={this.state.plants}/>
       <PlantInfo/>
       <GameContainer/>
       <ErrorPage/>
