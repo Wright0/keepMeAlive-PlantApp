@@ -29,8 +29,8 @@ class KeepMeAliveContainer extends Component {
       <>
       <h1>I am the container of the app</h1>
       <SelectPlant plants={this.state.plants}/>
-      <PlantInfo/>
-      <GameContainer/>
+      <PlantInfo plantId={this.state.selectedPlantId}/>
+      <GameContainer plantId={this.state.selectedPlantId}/>
       <ErrorPage/>
       </>
     )

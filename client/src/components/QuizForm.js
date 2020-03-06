@@ -4,16 +4,16 @@ const QuizForm = (props) => {
 
   return (
       <form>
-        <label for="watering" >Watering Frequency:</label>
+        <label htmlFor="watering" >Watering Frequency:</label>
         <br/>
         <input type="range" id="watering" min="0" max="10" />
         <br/>
-        <label for="fertilisation" >Fertilisation Frequency:</label>
+        <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
         <br/>
         <input type="range" id="fertilisation" min="0" max="10" />
         <br/>
 
-        <label for="light" >Light Requirement:</label>
+        <label htmlFor="light" >Light Requirement:</label>
         <br/>
         <select  id="light">
           <option value="low">Low </option>
@@ -21,7 +21,7 @@ const QuizForm = (props) => {
           <option value="direct">Direct </option>
         </select>
         <br/>
-        <label for="temperature" >Temperature:</label>
+        <label htmlFor="temperature" >Temperature:</label>
         <br/>
         <input type="range" id="temperature" min="0" max="10" />
         <br/>
