@@ -31,7 +31,13 @@ class GameContainer extends Component{
       temperature: answers.temperature
     }
     const updatedPlayerName = answers.playerName
-    this.setState({playerAnswers: updatedPlayerAnswers})
+
+    this.setState(prevState => {
+      return {playerAnswers: prevState.playerAnswers = updatedPlayerAnswers}, () => {
+        console.log(this.stage.playerAnswers);
+      }
+    })
+
     this.setState({playerName: updatedPlayerName})
     const score = this.calculateAndSetGameScore()
     this.setState({playerScore: score})
@@ -50,7 +56,7 @@ class GameContainer extends Component{
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        score: 50000,
+        score: 5000,
         plant: `http://localhost:8080/plants/${plantIdForPost}`,
         player: `http://localhost:8080/players/${playerIdForPost}`
       })
