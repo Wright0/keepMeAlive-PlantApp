@@ -46,13 +46,15 @@ class QuizForm extends Component  {
     this.setState({wateringFrequency: newValue})
   }
   handleFertilisationFrequencyChange(event) {
-    this.setState({fertilisationFrequency: event.target.value})
+    const newValue = parseInt(event.target.value)
+    this.setState({fertilisationFrequency: newValue})
   }
   handleLightRequirementChange(event) {
     this.setState({lightRequirement: event.target.value})
   }
   handleTemperatureChange(event) {
-    this.setState({temperature: event.target.value})
+    const newValue = parseInt(event.target.value)
+    this.setState({temperature: newValue})
   }
   render(){
     return (
@@ -75,8 +77,8 @@ class QuizForm extends Component  {
         <span>  {this.state.lightRequirement}</span>
         <br/>
         <select value={this.state.lightRequirement } onChange={this.handleLightRequirementChange} id="light" required>
-          <option value="low" >Low </option>
-          <option value="medium" >Medium </option>
+          <option value="shade" >Shade </option>
+          <option value="indirect" >Indirect </option>
           <option value="direct" >Direct </option>
         </select>
         <br/>

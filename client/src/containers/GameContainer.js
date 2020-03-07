@@ -32,12 +32,11 @@ class GameContainer extends Component{
     }
     const updatedPlayerName = answers.playerName
 
-    this.setState({playerAnswers: updatedPlayerAnswers}
-      )
+    this.setState({playerAnswers: updatedPlayerAnswers})
 
     this.setState({playerName: updatedPlayerName})
 
-
+    // Hard coded to test POST to database - to refactor//
     const playerIdForPost = "1"
     const plantIdForPost = "1"
 
@@ -66,13 +65,12 @@ class GameContainer extends Component{
 
     let score = 0
     if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
-      console.log("inside watering condition");
       score += 1
     }
-    if (this.props.plant.fertilisationFrequency == this.state.playerAnswers.fertilisationFrequency ){
+    if (this.props.plant.fertilisationFrequency === this.state.playerAnswers.fertilisationFrequency ){
       score +=1
     }
-    if (this.props.plant.lightRequirement == this.state.playerAnswers.lightRequirement ){
+    if (this.props.plant.lightRequirement === this.state.playerAnswers.lightRequirement ){
       score +=1
     }
     if (this.state.playerAnswers.temperature >= this.props.plant.minTemperature &&
