@@ -1,9 +1,13 @@
 import React from 'react';
 
-const SelectPlant = ({plants}) => {
+const SelectPlant = (props) => {
 
-  const plantItems = plants.map(plant => {
-    return <li key={plant.id}>{plant.commonName}</li>;
+  function handleSelectedPlant(event){
+    props.setSelectedPlantId(event.target.value)
+  }
+
+  const plantItems = props.plants.map(plant => {
+    return <li key={plant.id} value={plant.id} onClick={ handleSelectedPlant }>{plant.commonName}</li>;
   })
 
 return (
