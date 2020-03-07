@@ -30,10 +30,12 @@ public class DataLoader implements ApplicationRunner {
 
     public void run (ApplicationArguments args) {
 
-        Plant plant1 = new Plant("Monstera", "Monstera Deliciosa", "This is a plant, water it", 3, 1, "direct", 15, 22, "wwww.aliveplant.com", "www.deadplant.com");
-        Plant plant2 = new Plant("Some Plant", "Some Plant", "This is a plant, water it", 3, 1, "direct", 15, 22, "wwww.aliveplant.com", "www.deadplant.com");
+        Plant plant1 = new Plant("Monstera", "Monstera Deliciosa", "This is a plant, water it", 4, 2, "indirect", 28, 34, "wwww.aliveplant.com", "www.deadplant.com");
+        Plant plant2 = new Plant("Snake Plant", "Dracaena Trifasciata", "This is a plant, water it", 2, 1, "direct", 15, 26, "wwww.aliveplant.com", "www.deadplant.com");
+        Plant plant3 = new Plant("Rubber Fig", "Ficus Elastica", "This is a plant, water it", 2, 1, "indirect", 18, 27, "wwww.aliveplant.com", "www.deadplant.com");
         plantRepository.save(plant1);
         plantRepository.save(plant2);
+        plantRepository.save(plant3);
         Player player1 = new Player("Matteo");
         playerRepository.save(player1);
         Game game1 = new Game(5, plant1, player1);
