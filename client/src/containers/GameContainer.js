@@ -17,6 +17,7 @@ class GameContainer extends Component{
       playerScore: 0
     }
     this.addAnswers = this.addAnswers.bind(this)
+    this.calculateAndSetGameScore = this.calculateAndSetGameScore.bind(this)
   }
   //The QuizForm will set the state on submit. When the playerAnswers state here changes, this component will calculate the score by comparing the answers to the plant data prop.
   //The score + player's name (date?) will get POSTed to the database at that point (after the score is calculated).
@@ -30,8 +31,12 @@ class GameContainer extends Component{
       temperature: answers.temperature
     }
     const updatedPlayerName = answers.playerName
-    this.setState({playerAnswers: updatedPlayerAnswers})
+
+    this.setState({playerAnswers: updatedPlayerAnswers}
+      )
+
     this.setState({playerName: updatedPlayerName})
+    
 
     const playerIdForPost = "1"
     const plantIdForPost = "1"
@@ -43,11 +48,39 @@ class GameContainer extends Component{
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        score: 50000,
+        score: 5000,
         plant: `http://localhost:8080/plants/${plantIdForPost}`,
         player: `http://localhost:8080/players/${playerIdForPost}`
       })
     })
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.playerAnswers !== this.state.playerAnswers){
+      const score = this.calculateAndSetGameScore()
+      this.setState({playerScore: score})
+    }
+  }
+
+  calculateAndSetGameScore(){
+
+    let score = 0
+    if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
+      console.log("inside watering condition");
+      score += 1
+    }
+    if (this.props.plant.fertilisationFrequency == this.state.playerAnswers.fertilisationFrequency ){
+      score +=1
+    }
+    if (this.props.plant.lightRequirement == this.state.playerAnswers.lightRequirement ){
+      score +=1
+    }
+    if (this.state.playerAnswers.temperature >= this.props.plant.minTemperature &&
+      this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
+      score +=1
+    }
+    
+    return score
   }
 
   render(){
