@@ -92,7 +92,7 @@ class GameContainer extends Component{
     )
   }
 }
-        //plant images sent down as props. Conditional logic that decides which image to send down based on score. + a default plant.
+      //plant images sent down as props. Conditional logic that decides which image to send down based on score. + a default plant.
       //playerAnswers + playerScore sent down as a prop. This component is swapped out with Quiz Form on score calculation?
 
 export default GameContainer;

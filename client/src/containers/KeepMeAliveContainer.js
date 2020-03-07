@@ -52,29 +52,27 @@ class KeepMeAliveContainer extends Component {
   render(){
     return (
       <>
-      <h1>Keep Me Alive!</h1>
-      <h2>Helping plant owners not kill their plants since 2020</h2>
+        <h1>Keep Me Alive!</h1>
+        <h2>Helping plant owners not kill their plants since 2020</h2>
 
-      <SelectPlant
-        plants={this.state.plants}
-        setSelectedPlantId={this.setSelectedPlantId}
-        isPlantSelected={this.state.isPlantSelected}
-      />
+        <SelectPlant
+          plants={this.state.plants}
+          setSelectedPlantId={this.setSelectedPlantId}
+          isPlantSelected={this.state.isPlantSelected}
+        />
 
-      <PlantInfo
-        plant={this.state.selectedPlant}
-        isGameActive={this.state.isGameActive}
-        isPlantSelected={this.state.isPlantSelected}
-        startGame={this.startGame}
-      />
+        <PlantInfo
+          plant={this.state.selectedPlant}
+          isGameActive={this.state.isGameActive}
+          isPlantSelected={this.state.isPlantSelected}
+          startGame={this.startGame}
+        />
 
-      <GameContainer
-        plant={this.state.selectedPlant}
-        isGameActive={this.state.isGameActive}
-        endGame={this.endGame}
-      />
-
-
+        <GameContainer
+          plant={this.state.selectedPlant}
+          isGameActive={this.state.isGameActive}
+          endGame={this.endGame}
+        />
       </>
     )
   }

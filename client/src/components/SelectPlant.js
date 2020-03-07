@@ -11,15 +11,14 @@ if (isPlantSelected) return null;
     return <li key={plant.id} value={plant.id} onClick={ handleSelectedPlant }>{plant.commonName}</li>;
   })
 
-return (
-  <section>
-    <h3>Select a plant</h3>
-    <ul>
-      { plantItems }
-    </ul>
-  </section>
-)
-
+  return (
+    <section>
+      <h3>Select a plant</h3>
+      <ul>
+        { plantItems }
+      </ul>
+    </section>
+  )
 }
 
 export default SelectPlant;
