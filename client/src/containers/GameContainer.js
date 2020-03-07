@@ -21,6 +21,15 @@ class GameContainer extends Component{
   //The score + player's name (date?) will get POSTed to the database at that point (after the score is calculated).
   //This component will then send the score and the player's answers down to the GameResult component.
 
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.playerAnswers !== this.state.playerAnswers){
+      const score = this.calculateGameScore()
+      this.setState({playerScore: score}, () => {
+        this.saveGameDataToDb()
+      })
+    }
+  }
+
   addAnswers = (answers) => {
     const updatedPlayerAnswers = {
       wateringFrequency: answers.wateringFrequency,
@@ -29,11 +38,11 @@ class GameContainer extends Component{
       temperature: answers.temperature
     }
     const updatedPlayerName = answers.playerName
-
     this.setState({playerAnswers: updatedPlayerAnswers})
-
     this.setState({playerName: updatedPlayerName})
+  }
 
+  saveGameDataToDb = () => {
     // Hard coded to test POST to database - to refactor//
     const playerIdForPost = "1"
     const plantIdForPost = "1"
@@ -45,22 +54,14 @@ class GameContainer extends Component{
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        score: 5000,
+        score: this.state.playerScore,
         plant: `http://localhost:8080/plants/${plantIdForPost}`,
         player: `http://localhost:8080/players/${playerIdForPost}`
       })
     })
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if(prevState.playerAnswers !== this.state.playerAnswers){
-      const score = this.calculateAndSetGameScore()
-      this.setState({playerScore: score})
-    }
-  }
-
-  calculateAndSetGameScore = () => {
-
+  calculateGameScore = () => {
     let score = 0
     if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
       score += 1
@@ -75,7 +76,6 @@ class GameContainer extends Component{
       this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
       score +=1
     }
-
     return score
   }
 
@@ -84,10 +84,8 @@ class GameContainer extends Component{
       <>
       <h1>This is the game</h1>
       <GamePlantImage/>
-
       <QuizForm onAnswersSubmit={this.addAnswers}/>
       <GameResult playerScore={this.state.playerScore}/>
-
       </>
     )
   }
