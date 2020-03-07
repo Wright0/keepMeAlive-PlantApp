@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 
 const PlantInfo = ({plantId}) => {
 
+  //Prop will now be the whole plant.
+
 
   const [plant, setPlant] = useState({})
 
@@ -14,6 +16,8 @@ const PlantInfo = ({plantId}) => {
       .then(res => res.json())
       .then(plantObject => setPlant(plantObject))
   }
+
+  //This fetch needs to happen in Keep me Alive container
 
   return (
     <>

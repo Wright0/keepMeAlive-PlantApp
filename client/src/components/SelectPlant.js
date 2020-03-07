@@ -19,3 +19,5 @@ return (
 }
 
 export default SelectPlant;
+
+//buttons to set the selected plant id

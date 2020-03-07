@@ -20,7 +20,8 @@ class KeepMeAliveContainer extends Component {
           name: "Rubber Plant"
         }
       ],
-      selectedPlantId:1
+      selectedPlantId:1,
+      selectedPlant: {}
     }
   }
 
@@ -29,8 +30,9 @@ class KeepMeAliveContainer extends Component {
       <>
       <h1>I am the container of the app</h1>
       <SelectPlant plants={this.state.plants}/>
-      <PlantInfo plantId={this.state.selectedPlantId}/>
-      <GameContainer plantId={this.state.selectedPlantId}/>
+      <PlantInfo plant={this.state.selectedPlant}/>
+      <GameContainer plant={this.state.selectedPlant}/>
+      // TODO: The two above are no longer selectedPlantId. We'll send down the object instead
       <ErrorPage/>
       </>
     )

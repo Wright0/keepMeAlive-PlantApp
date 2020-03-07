@@ -30,4 +30,6 @@ const QuizForm = (props) => {
   )
 }
 
+//2 functions get sent down from Game container: savePlayersAnswers + savePlayersName. These are both used in a function here which bundles answers (event.target.value) into the format we need and send it back up to game container. 
+
 export default QuizForm;

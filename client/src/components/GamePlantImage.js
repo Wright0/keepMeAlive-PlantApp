@@ -8,3 +8,5 @@ const GamePlantImage = (props) => {
 }
 
 export default GamePlantImage;
+
+//the prop changes depending on the player score
