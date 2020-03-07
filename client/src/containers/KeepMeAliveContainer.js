@@ -6,7 +6,6 @@ import HighScores from '../components/HighScores.js';
 import ErrorPage from '../components/ErrorPage.js';
 
 class KeepMeAliveContainer extends Component {
-
   constructor(props){
     super(props)
     this.state = {

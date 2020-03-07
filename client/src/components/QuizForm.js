@@ -42,7 +42,8 @@ class QuizForm extends Component  {
     this.setState({playerName: event.target.value})
   }
   handleWateringFrequencyChange(event) {
-    this.setState({wateringFrequency: event.target.value })
+    const newValue = parseInt(event.target.value)
+    this.setState({wateringFrequency: newValue})
   }
   handleFertilisationFrequencyChange(event) {
     this.setState({fertilisationFrequency: event.target.value})
@@ -58,17 +59,20 @@ class QuizForm extends Component  {
       <form onSubmit={this.handleScoreSubmit}>
         <label htmlFor="playerName" > Enter Player Name: </label>
         <br/>
-        <input onChange={this.handlePlayerNameChange} type="text" id="playerName" />
+        <input onChange={this.handlePlayerNameChange} type="text" id="playerName"/>
         <br/>
         <label htmlFor="watering" >Watering Frequency:</label>
+        <span>  {this.state.wateringFrequency}</span>
         <br/>
         <input onChange={this.handleWateringFrequencyChange} value={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
         <br/>
         <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
+        <span>  {this.state.fertilisationFrequency}</span>
         <br/>
         <input onChange={this.handleFertilisationFrequencyChange} value={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
         <br/>
         <label htmlFor="light" >Light Requirement:</label>
+        <span>  {this.state.lightRequirement}</span>
         <br/>
         <select value={this.state.lightRequirement } onChange={this.handleLightRequirementChange} id="light" required>
           <option value="low" >Low </option>
@@ -77,8 +81,9 @@ class QuizForm extends Component  {
         </select>
         <br/>
         <label htmlFor="temperature" >Temperature:</label>
+        <span>  {this.state.temperature}</span>
         <br/>
-        <input onChange={this.handleTemperatureChange} value={this.state.temperature} type="range" id="temperature" min="0" max="10" />
+        <input onChange={this.handleTemperatureChange} value={this.state.temperature} type="range" id="temperature" min="0" max="50" />
         <br/>
         <input type="submit" value="Submit Answers" />
       </form>
