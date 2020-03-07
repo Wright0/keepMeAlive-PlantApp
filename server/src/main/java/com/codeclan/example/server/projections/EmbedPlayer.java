@@ -6,6 +6,5 @@ import org.springframework.data.rest.core.config.Projection;
 
 @Projection(name = "embedPlayer", types = Player.class)
 public interface EmbedPlayer {
-    String getId();
     String getName();
 }

@@ -31,7 +31,9 @@ public class DataLoader implements ApplicationRunner {
     public void run (ApplicationArguments args) {
 
         Plant plant1 = new Plant("Monstera", "Monstera Deliciosa", "This is a plant, water it", 3, 1, "direct", 15, 22, "wwww.aliveplant.com", "www.deadplant.com");
+        Plant plant2 = new Plant("Some Plant", "Some Plant", "This is a plant, water it", 3, 1, "direct", 15, 22, "wwww.aliveplant.com", "www.deadplant.com");
         plantRepository.save(plant1);
+        plantRepository.save(plant2);
         Player player1 = new Player("Matteo");
         playerRepository.save(player1);
         Game game1 = new Game(5, plant1, player1);
