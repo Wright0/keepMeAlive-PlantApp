@@ -32,19 +32,11 @@ class GameContainer extends Component{
     }
     const updatedPlayerName = answers.playerName
 
-    this.setState(prevState => {
-      return {playerAnswers: prevState.playerAnswers = updatedPlayerAnswers}, () => {
-        console.log(this.stage.playerAnswers);
-      }
-    })
+    this.setState({playerAnswers: updatedPlayerAnswers}
+      )
 
     this.setState({playerName: updatedPlayerName})
-    const score = this.calculateAndSetGameScore()
-    this.setState({playerScore: score})
-
-    // console.log("just before calculate score");
-    // this.calculateAndSetGameScore()
-    // console.log("after  calculate score");
+    
 
     const playerIdForPost = "1"
     const plantIdForPost = "1"
@@ -63,30 +55,31 @@ class GameContainer extends Component{
     })
   }
 
-  calculateAndSetGameScore(){
-    // console.log(this.props.plant.wateringFrequency);
-    console.log(this.state.wateringFrequency);
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.playerAnswers !== this.state.playerAnswers){
+      const score = this.calculateAndSetGameScore()
+      this.setState({playerScore: score})
+    }
+  }
 
-    const score = 0
-    if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency ) {
+  calculateAndSetGameScore(){
+
+    let score = 0
+    if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
       console.log("inside watering condition");
       score += 1
     }
-    // if (this.props.plant.fertilisationFrequency == this.state.playerAnswers.fertilisationFrequency ){
-    //   score +=1
-    // }
-    // if (this.props.plant.lightRequirement == this.state.playerAnswers.lightRequirement ){
-    //   score +=1
-    // }
-    // if (this.state.playerAnswers.temperature >= this.props.plant.minTemperatrue &&
-    //   this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
-    //   score +=1
-    // }
-    // else {
-    //   console.log("inside else", score);
-    //   return score;
-    // }
-    console.log("before returning:", score);
+    if (this.props.plant.fertilisationFrequency == this.state.playerAnswers.fertilisationFrequency ){
+      score +=1
+    }
+    if (this.props.plant.lightRequirement == this.state.playerAnswers.lightRequirement ){
+      score +=1
+    }
+    if (this.state.playerAnswers.temperature >= this.props.plant.minTemperature &&
+      this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
+      score +=1
+    }
+    
     return score
   }
 
