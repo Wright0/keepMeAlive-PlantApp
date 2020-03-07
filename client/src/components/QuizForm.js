@@ -56,7 +56,8 @@ class QuizForm extends Component  {
   render(){
     return (
       <form onSubmit={this.handleScoreSubmit}>
-        <label htmlFor="playerName" > Enter Player Name: </label> <br/>
+        <label htmlFor="playerName" > Enter Player Name: </label>
+        <br/>
         <input onChange={this.handlePlayerNameChange} type="text" id="playerName" />
         <br/>
         <label htmlFor="watering" >Watering Frequency:</label>
@@ -67,7 +68,6 @@ class QuizForm extends Component  {
         <br/>
         <input onChange={this.handleFertilisationFrequencyChange} type="range" id="fertilisation" min="0" max="10" />
         <br/>
-
         <label htmlFor="light" >Light Requirement:</label>
         <br/>
         <select onChange={this.handleLightRequirementChange} id="light">
