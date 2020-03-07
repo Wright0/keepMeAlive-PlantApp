@@ -11,14 +11,27 @@ class KeepMeAliveContainer extends Component {
     this.state = {
       plants: [],
       selectedPlant: null,
-      selectedPlantId:0
+      selectedPlantId:0,
+      isPlantSelected: false,
+      isGameActive: false
     }
     this.setSelectedPlantId = this.setSelectedPlantId.bind(this)
+    this.startGame = this.startGame.bind(this)
+    this.endGame = this.endGame.bind(this)
   }
 
-setSelectedPlantId(plantId){
-  this.setState({selectedPlantId: plantId})
-}
+  setSelectedPlantId(plantId){
+    this.setState({selectedPlantId: plantId});
+    this.setState({isPlantSelected: true});
+  }
+
+  startGame(){
+    this.setState({isGameActive: true})
+  }
+
+  endGame(){
+    this.setState({isGameActive: false})
+  }
 
   componentDidMount(){
     fetch('http://localhost:8080/plants')
@@ -39,11 +52,29 @@ setSelectedPlantId(plantId){
   render(){
     return (
       <>
-      <h1>I am the container of the app</h1>
-      <SelectPlant plants={this.state.plants} setSelectedPlantId={this.setSelectedPlantId}/>
-      <PlantInfo plant={this.state.selectedPlant}/>
-      <GameContainer plant={this.state.selectedPlant}/>
-      <ErrorPage/>
+      <h1>Keep Me Alive!</h1>
+      <h2>Helping plant owners not kill their plants since 2020</h2>
+
+      <SelectPlant
+        plants={this.state.plants}
+        setSelectedPlantId={this.setSelectedPlantId}
+        isPlantSelected={this.state.isPlantSelected}
+      />
+
+      <PlantInfo
+        plant={this.state.selectedPlant}
+        isGameActive={this.state.isGameActive}
+        isPlantSelected={this.state.isPlantSelected}
+        startGame={this.startGame}
+      />
+
+      <GameContainer
+        plant={this.state.selectedPlant}
+        isGameActive={this.state.isGameActive}
+        endGame={this.endGame}
+      />
+
+
       </>
     )
   }

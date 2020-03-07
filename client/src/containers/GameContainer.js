@@ -80,6 +80,8 @@ class GameContainer extends Component{
   }
 
   render(){
+    if (!this.props.isGameActive) return null;
+
     return (
       <>
       <h1>This is the game</h1>
