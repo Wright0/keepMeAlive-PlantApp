@@ -16,14 +16,12 @@ class GameContainer extends Component{
       },
       playerScore: 0
     }
-    this.addAnswers = this.addAnswers.bind(this)
-    this.calculateAndSetGameScore = this.calculateAndSetGameScore.bind(this)
   }
   //The QuizForm will set the state on submit. When the playerAnswers state here changes, this component will calculate the score by comparing the answers to the plant data prop.
   //The score + player's name (date?) will get POSTed to the database at that point (after the score is calculated).
   //This component will then send the score and the player's answers down to the GameResult component.
 
-  addAnswers(answers){
+  addAnswers = (answers) => {
     const updatedPlayerAnswers = {
       wateringFrequency: answers.wateringFrequency,
       fertilisationFrequency: answers.fertilisationFrequency,
@@ -61,7 +59,7 @@ class GameContainer extends Component{
     }
   }
 
-  calculateAndSetGameScore(){
+  calculateAndSetGameScore = () => {
 
     let score = 0
     if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {

@@ -10,23 +10,9 @@ class QuizForm extends Component  {
       lightRequirement: "medium",
       temperature: 5
     }
-    this.handlePlayerNameChange = this.handlePlayerNameChange.bind(this)
-    this.handleWateringFrequencyChange = this.handleWateringFrequencyChange.bind(this)
-    this.handleFertilisationFrequencyChange = this.handleFertilisationFrequencyChange.bind(this)
-    this.handleLightRequirementChange = this.handleLightRequirementChange.bind(this)
-    this.handleTemperatureChange = this.handleTemperatureChange.bind(this)
-    this.handleScoreSubmit = this.handleScoreSubmit.bind(this)
   }
 
-  // handleAuthorChange(event){
-  //   this.setState({author: event.target.value})
-  // }
-  //
-  // handleQuoteChange(event){
-  //   this.setState({quote: event.target.value})
-  // }
-  //
-  handleScoreSubmit(event){
+  handleScoreSubmit = (event) => {
     event.preventDefault()
     const newAnswers = {
       playerName: this.state.playerName,
@@ -38,21 +24,21 @@ class QuizForm extends Component  {
     this.props.onAnswersSubmit(newAnswers)
   }
 
-  handlePlayerNameChange(event) {
+  handlePlayerNameChange = (event) => {
     this.setState({playerName: event.target.value})
   }
-  handleWateringFrequencyChange(event) {
+  handleWateringFrequencyChange = (event) => {
     const newValue = parseInt(event.target.value)
     this.setState({wateringFrequency: newValue})
   }
-  handleFertilisationFrequencyChange(event) {
+  handleFertilisationFrequencyChange = (event) => {
     const newValue = parseInt(event.target.value)
     this.setState({fertilisationFrequency: newValue})
   }
-  handleLightRequirementChange(event) {
+  handleLightRequirementChange = (event) => {
     this.setState({lightRequirement: event.target.value})
   }
-  handleTemperatureChange(event) {
+  handleTemperatureChange = (event) => {
     const newValue = parseInt(event.target.value)
     this.setState({temperature: newValue})
   }
