@@ -36,16 +36,16 @@ public class Plant {
     @Column(name = "max_temperature")
     private int maxTemperature;
 
-    @Column(name = "alive_url")
-    private String aliveUrl;
+    @Column(name = "alive_image_url")
+    private String aliveImageUrl;
 
-    @Column(name = "dead_url")
-    private String deadUrl;
+    @Column(name = "dead_image_url")
+    private String deadImageUrl;
 
     @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY)
     private List<Game> games;
 
-    public Plant(String commonName, String scientificName, String description, int wateringFrequency, int fertilisationFrequency, String lightRequirement, int minTemperature, int maxTemperature, String aliveUrl, String deadUrl) {
+    public Plant(String commonName, String scientificName, String description, int wateringFrequency, int fertilisationFrequency, String lightRequirement, int minTemperature, int maxTemperature, String aliveImageUrl, String deadImageUrl) {
         this.commonName = commonName;
         this.scientificName = scientificName;
         this.description = description;
@@ -54,8 +54,8 @@ public class Plant {
         this.lightRequirement = lightRequirement;
         this.minTemperature = minTemperature;
         this.maxTemperature = maxTemperature;
-        this.aliveUrl = aliveUrl;
-        this.deadUrl = deadUrl;
+        this.aliveImageUrl = aliveImageUrl;
+        this.deadImageUrl = deadImageUrl;
         this.games = new ArrayList<>();
     }
 
@@ -134,20 +134,20 @@ public class Plant {
         this.maxTemperature = maxTemperature;
     }
 
-    public String getAliveUrl() {
-        return aliveUrl;
+    public String getAliveImageUrl() {
+        return aliveImageUrl;
     }
 
-    public void setAliveUrl(String aliveUrl) {
-        this.aliveUrl = aliveUrl;
+    public void setAliveImageUrl(String aliveImageUrl) {
+        this.aliveImageUrl = aliveImageUrl;
     }
 
-    public String getDeadUrl() {
-        return deadUrl;
+    public String getDeadImageUrl() {
+        return deadImageUrl;
     }
 
-    public void setDeadUrl(String deadUrl) {
-        this.deadUrl = deadUrl;
+    public void setDeadImageUrl(String deadImageUrl) {
+        this.deadImageUrl = deadImageUrl;
     }
 
     public List<Game> getGames() {
