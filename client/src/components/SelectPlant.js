@@ -3,7 +3,7 @@ import React from 'react';
 const SelectPlant = ({plants}) => {
 
   const plantItems = plants.map(plant => {
-    return <li key={plant.id}>{plant.name}</li>;
+    return <li key={plant.id}>{plant.commonName}</li>;
   })
 
 return (
