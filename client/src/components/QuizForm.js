@@ -1,21 +1,76 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const QuizForm = (props) => {
+class QuizForm extends Component  {
+  constructor(props){
+    super(props)
+    this.state = {
+      playerName: "",
+      wateringFrequency: null,
+      fertilisationFrequency: null,
+      lightRequirement: "",
+      temperature: null
+    }
+    this.handlePlayerNameChange = this.handlePlayerNameChange.bind(this)
+    this.handleWateringFrequencyChange = this.handleWateringFrequencyChange.bind(this)
+    this.handleFertilisationFrequencyChange = this.handleFertilisationFrequencyChange.bind(this)
+    this.handleLightRequirementChange = this.handleLightRequirementChange.bind(this)
+    this.handleTemperatureChange = this.handleTemperatureChange.bind(this)
+    this.handleScoreSubmit = this.handleScoreSubmit.bind(this)
+  }
 
-  return (
-      <form>
+  // handleAuthorChange(event){
+  //   this.setState({author: event.target.value})
+  // }
+  //
+  // handleQuoteChange(event){
+  //   this.setState({quote: event.target.value})
+  // }
+  //
+  handleScoreSubmit(event){
+    event.preventDefault()
+    const newAnswers = {
+      playerName: this.state.playerName,
+      wateringFrequency: this.state.wateringFrequency,
+      fertilisationFrequency: this.state.fertilisationFrequency,
+      lightRequirement: this.state.lightRequirement,
+      temperature: this.state.temperature
+    }
+    this.props.onAnswersSubmit(newAnswers)
+  }
+
+  handlePlayerNameChange(event) {
+    this.setState({playerName: event.target.value})
+  }
+  handleWateringFrequencyChange(event) {
+    this.setState({wateringFrequency: event.target.value })
+  }
+  handleFertilisationFrequencyChange(event) {
+    this.setState({fertilisationFrequency: event.target.value})
+  }
+  handleLightRequirementChange(event) {
+    this.setState({lightRequirement: event.target.value})
+  }
+  handleTemperatureChange(event) {
+    this.setState({temperature: event.target.value})
+  }
+  render(){
+    return (
+      <form onSubmit={this.handleScoreSubmit}>
+        <label htmlFor="playerName" > Enter Player Name: </label> <br/>
+        <input onChange={this.handlePlayerNameChange} type="text" id="playerName" />
+        <br/>
         <label htmlFor="watering" >Watering Frequency:</label>
         <br/>
-        <input type="range" id="watering" min="0" max="10" />
+        <input onChange={this.handleWateringFrequencyChange} type="range" id="watering" min="0" max="10" />
         <br/>
         <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
         <br/>
-        <input type="range" id="fertilisation" min="0" max="10" />
+        <input onChange={this.handleFertilisationFrequencyChange} type="range" id="fertilisation" min="0" max="10" />
         <br/>
 
         <label htmlFor="light" >Light Requirement:</label>
         <br/>
-        <select  id="light">
+        <select onChange={this.handleLightRequirementChange} id="light">
           <option value="low">Low </option>
           <option value="medium">Medium </option>
           <option value="direct">Direct </option>
@@ -23,13 +78,15 @@ const QuizForm = (props) => {
         <br/>
         <label htmlFor="temperature" >Temperature:</label>
         <br/>
-        <input type="range" id="temperature" min="0" max="10" />
+        <input onChange={this.handleTemperatureChange} type="range" id="temperature" min="0" max="10" />
         <br/>
-
+        <input type="submit" value="Submit Answers" />
       </form>
-  )
+    )
+  }
+
 }
 
-//2 functions get sent down from Game container: savePlayersAnswers + savePlayersName. These are both used in a function here which bundles answers (event.target.value) into the format we need and send it back up to game container. 
+//2 functions get sent down from Game container: savePlayersAnswers + savePlayersName. These are both used in a function here which bundles answers (event.target.value) into the format we need and send it back up to game container.
 
 export default QuizForm;
