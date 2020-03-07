@@ -1,9 +1,9 @@
 import React from 'react';
 
-const GameResult = (props) => {
+const GameResult = ({playerScore}) => {
 
   return (
-    <p>I am the game result</p>
+    <h1>The score is: {playerScore}</h1>
   )
 
 }

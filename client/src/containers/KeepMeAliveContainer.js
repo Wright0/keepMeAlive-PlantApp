@@ -43,7 +43,6 @@ setSelectedPlantId(plantId){
       <SelectPlant plants={this.state.plants} setSelectedPlantId={this.setSelectedPlantId}/>
       <PlantInfo plant={this.state.selectedPlant}/>
       <GameContainer plant={this.state.selectedPlant}/>
-      // TODO: The two above are no longer selectedPlantId. We'll send down the object instead
       <ErrorPage/>
       </>
     )

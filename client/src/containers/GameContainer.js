@@ -36,7 +36,7 @@ class GameContainer extends Component{
       )
 
     this.setState({playerName: updatedPlayerName})
-    
+
 
     const playerIdForPost = "1"
     const plantIdForPost = "1"
@@ -79,7 +79,7 @@ class GameContainer extends Component{
       this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
       score +=1
     }
-    
+
     return score
   }
 
@@ -88,13 +88,15 @@ class GameContainer extends Component{
       <>
       <h1>This is the game</h1>
       <GamePlantImage/>
-      //plant images sent down as props. Conditional logic that decides which image to send down based on score. + a default plant.
+
       <QuizForm onAnswersSubmit={this.addAnswers}/>
-      <GameResult/>
-      //playerAnswers + playerScore sent down as a prop. This component is swapped out with Quiz Form on score calculation?
+      <GameResult playerScore={this.state.playerScore}/>
+
       </>
     )
   }
 }
+        //plant images sent down as props. Conditional logic that decides which image to send down based on score. + a default plant.
+      //playerAnswers + playerScore sent down as a prop. This component is swapped out with Quiz Form on score calculation?
 
 export default GameContainer;
