@@ -23,7 +23,6 @@ class GameContainer extends Component{
   //This component will then send the score and the player's answers down to the GameResult component.
 
   addAnswers(answers){
-    answers.id = Date.now()
     const updatedPlayerAnswers = {
       wateringFrequency: answers.wateringFrequency,
       fertilisationFrequency: answers.fertilisationFrequency,
@@ -33,6 +32,22 @@ class GameContainer extends Component{
     const updatedPlayerName = answers.playerName
     this.setState({playerAnswers: updatedPlayerAnswers})
     this.setState({playerName: updatedPlayerName})
+
+    const playerIdForPost = "1"
+    const plantIdForPost = "1"
+
+    fetch('http://localhost:8080/games', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        score: 50000,
+        plant: `http://localhost:8080/plants/${plantIdForPost}`,
+        player: `http://localhost:8080/players/${playerIdForPost}`
+      })
+    })
   }
 
   render(){
