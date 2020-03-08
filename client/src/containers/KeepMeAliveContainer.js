@@ -13,11 +13,11 @@ class KeepMeAliveContainer extends Component {
       isGameActive: false,
       isPlantSelected:false
     }
-
     this.setSelectedPlantId = this.setSelectedPlantId.bind(this)
     this.setGameStatus = this.setGameStatus.bind(this)
     this.resetSelectedPlant = this.resetSelectedPlant.bind(this)
     this.setIsPlantSelected = this.setIsPlantSelected.bind(this)
+    this.returnToPickAPlant = this.returnToPickAPlant.bind(this)
   }
 
   setSelectedPlantId(plantId){
@@ -34,6 +34,12 @@ class KeepMeAliveContainer extends Component {
 
   setGameStatus(gameStatus){
     this.setState({isGameActive: gameStatus})
+  }
+
+  returnToPickAPlant = () => {
+    this.resetSelectedPlant(null);
+    this.setSelectedPlantId(null);
+    this.setIsPlantSelected(false);
   }
 
   componentDidMount(){
@@ -70,6 +76,7 @@ class KeepMeAliveContainer extends Component {
           plant={this.state.selectedPlant}
           isGameActive={this.state.isGameActive}
           setGameStatus={this.setGameStatus}
+          returnToPickAPlant={this.returnToPickAPlant}
         />
 
         <GameContainer

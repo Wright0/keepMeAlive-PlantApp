@@ -6,6 +6,9 @@ const SelectPlant = ({plants, setSelectedPlantId, isPlantSelected, setIsPlantSel
 if (isPlantSelected) return null;
 
   function handleSelectedPlant(event){
+    console.log("etv", event.target.value);
+    console.log("et", event.target);
+    
     setSelectedPlantId(event.target.value);
     setIsPlantSelected(true);
   }
@@ -13,9 +16,9 @@ if (isPlantSelected) return null;
   const plantItems = plants.map(plant => {
     return (
     <li 
-      key={plant.id} 
-      value={plant.id}
+      key={plant.id}
       className="select-plant"
+      value={plant.id}
       onClick={ handleSelectedPlant }
     >
       <img
@@ -23,7 +26,7 @@ if (isPlantSelected) return null;
         className="aloe-vera"
         alt="Aloe vera plant"
       />
-      <p className="select-plant">{plant.commonName}</p>
+      <p className="select-plant">{ plant.commonName }</p>
     </li>
     )
   })
@@ -39,5 +42,3 @@ if (isPlantSelected) return null;
 }
 
 export default SelectPlant;
-
-//buttons to set the selected plant id

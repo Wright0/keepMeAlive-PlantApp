@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const PlantInfo = ({plant, isGameActive, setGameStatus}) => {
+const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => {
   if (!plant || isGameActive) return null;
 
   return (
@@ -32,6 +32,7 @@ const PlantInfo = ({plant, isGameActive, setGameStatus}) => {
       </ul>
 
       <button onClick={() => {setGameStatus(true)}}>PLAY</button>
+      <button onClick={returnToPickAPlant}>PICK A DIFFERENT PLANT</button>
     </article>
   )
 }
