@@ -1,0 +1,12 @@
+.aloe-vera {
+    width: 100px;
+}
+
+li.select-plant {
+   color: green; 
+}
+
+ul.select-plant {
+    list-style-type: none;
+    padding: 0px;
+}

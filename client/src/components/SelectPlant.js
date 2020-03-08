@@ -1,4 +1,6 @@
 import React from 'react';
+import aloeVeraMedium from '../assets/aloevera2.png';
+import './SelectPlant.css';
 
 const SelectPlant = ({plants, setSelectedPlantId, isPlantSelected, setIsPlantSelected}) => {
 if (isPlantSelected) return null;
@@ -9,13 +11,29 @@ if (isPlantSelected) return null;
   }
 
   const plantItems = plants.map(plant => {
-    return <li key={plant.id} value={plant.id} onClick={ handleSelectedPlant }>{plant.commonName}</li>;
+    return (
+    <div>
+      <img
+        src={aloeVeraMedium}
+        className="aloe-vera"
+        alt="Aloe vera plant"
+      />
+      <li 
+        key={plant.id} 
+        value={plant.id}
+        className="select-plant"
+        onClick={ handleSelectedPlant }
+        >
+          {plant.commonName}
+      </li>
+    </div>
+    )
   })
 
   return (
     <section>
       <h3>Select a plant</h3>
-      <ul>
+      <ul className="select-plant">
         { plantItems }
       </ul>
     </section>

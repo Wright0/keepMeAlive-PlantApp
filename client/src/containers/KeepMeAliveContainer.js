@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import SelectPlant from '../components/SelectPlant.js';
 import PlantInfo from '../components/PlantInfo.js';
 import GameContainer from './GameContainer.js';
-import HighScores from '../components/HighScores.js';
 
 class KeepMeAliveContainer extends Component {
   constructor(props){
