@@ -12,26 +12,24 @@ if (isPlantSelected) return null;
 
   const plantItems = plants.map(plant => {
     return (
-    <div>
+    <li 
+      key={plant.id} 
+      value={plant.id}
+      className="select-plant"
+      onClick={ handleSelectedPlant }
+    >
       <img
         src={aloeVeraMedium}
         className="aloe-vera"
         alt="Aloe vera plant"
       />
-      <li 
-        key={plant.id} 
-        value={plant.id}
-        className="select-plant"
-        onClick={ handleSelectedPlant }
-        >
-          {plant.commonName}
-      </li>
-    </div>
+      <p className="select-plant">{plant.commonName}</p>
+    </li>
     )
   })
 
   return (
-    <section>
+    <section className="select-plant">
       <h3>Select a plant</h3>
       <ul className="select-plant">
         { plantItems }
