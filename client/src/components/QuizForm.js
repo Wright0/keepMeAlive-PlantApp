@@ -22,6 +22,7 @@ class QuizForm extends Component  {
       temperature: this.state.temperature
     }
     this.props.onAnswersSubmit(newAnswers)
+    this.props.setGameInputStatus(false)
   }
 
   handlePlayerNameChange = (event) => {
@@ -43,6 +44,8 @@ class QuizForm extends Component  {
     this.setState({temperature: newValue})
   }
   render(){
+    if (!this.props.isGameInInputStage) return null;
+
     return (
       <form onSubmit={this.handleScoreSubmit}>
         <label htmlFor="playerName" > Enter Player Name: </label>

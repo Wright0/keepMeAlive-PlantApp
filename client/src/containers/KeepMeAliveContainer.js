@@ -3,7 +3,6 @@ import SelectPlant from '../components/SelectPlant.js';
 import PlantInfo from '../components/PlantInfo.js';
 import GameContainer from './GameContainer.js';
 import HighScores from '../components/HighScores.js';
-import ErrorPage from '../components/ErrorPage.js';
 
 class KeepMeAliveContainer extends Component {
   constructor(props){
@@ -11,26 +10,31 @@ class KeepMeAliveContainer extends Component {
     this.state = {
       plants: [],
       selectedPlant: null,
-      selectedPlantId:0,
-      isPlantSelected: false,
-      isGameActive: false
+      selectedPlantId: null,
+      isGameActive: false,
+      isPlantSelected:false
     }
+
     this.setSelectedPlantId = this.setSelectedPlantId.bind(this)
-    this.startGame = this.startGame.bind(this)
-    this.endGame = this.endGame.bind(this)
+    this.setGameStatus = this.setGameStatus.bind(this)
+    this.resetSelectedPlant = this.resetSelectedPlant.bind(this)
+    this.setIsPlantSelected = this.setIsPlantSelected.bind(this)
   }
 
   setSelectedPlantId(plantId){
     this.setState({selectedPlantId: plantId});
-    this.setState({isPlantSelected: true});
   }
 
-  startGame(){
-    this.setState({isGameActive: true})
+  resetSelectedPlant(){
+    this.setState({selectedPlant: null});
   }
 
-  endGame(){
-    this.setState({isGameActive: false})
+  setIsPlantSelected(status){
+    this.setState({isPlantSelected: status})
+  }
+
+  setGameStatus(gameStatus){
+    this.setState({isGameActive: gameStatus})
   }
 
   componentDidMount(){
@@ -41,13 +45,14 @@ class KeepMeAliveContainer extends Component {
       .catch(err => console.error)
   }
 
-  componentDidUpdate(){
-    fetch(`http://localhost:8080/plants/${this.state.selectedPlantId}`)
-      .then(response => response.json())
-      .then(plantObject => this.setState({selectedPlant: plantObject}))
-      .catch(err => console.error)
+  componentDidUpdate(prevProps, prevState){
+    if (prevState.selectedPlantId !== this.state.selectedPlantId && this.state.selectedPlantId !== null) {
+      fetch(`http://localhost:8080/plants/${this.state.selectedPlantId}`)
+        .then(response => response.json())
+        .then(plantObject => this.setState({selectedPlant: plantObject}))
+        .catch(err => console.error)
+    }
   }
-  //Problem: because the id is set to 0, it tries to fetch the plant with id 0. You can't make it a string, or else the hiding of the object on the other end doesn't work because it sends an empty string.
 
   render(){
     return (
@@ -59,19 +64,22 @@ class KeepMeAliveContainer extends Component {
           plants={this.state.plants}
           setSelectedPlantId={this.setSelectedPlantId}
           isPlantSelected={this.state.isPlantSelected}
+          setIsPlantSelected={this.setIsPlantSelected}
         />
 
         <PlantInfo
           plant={this.state.selectedPlant}
           isGameActive={this.state.isGameActive}
-          isPlantSelected={this.state.isPlantSelected}
-          startGame={this.startGame}
+          setGameStatus={this.setGameStatus}
         />
 
         <GameContainer
           plant={this.state.selectedPlant}
           isGameActive={this.state.isGameActive}
-          endGame={this.endGame}
+          setGameStatus={this.setGameStatus}
+          setSelectedPlantId={this.setSelectedPlantId}
+          setIsPlantSelected={this.setIsPlantSelected}
+          resetSelectedPlant={this.resetSelectedPlant}
         />
       </>
     )

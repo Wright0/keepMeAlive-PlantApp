@@ -1,11 +1,15 @@
 import React from 'react';
 
-const GameResult = ({playerScore}) => {
+const GameResult = ({playerScore, isGameInInputStage, setGameInputStatus, resetPage}) => {
+  if (isGameInInputStage) return null;
 
   return (
-    <h1>The score is: {playerScore}</h1>
+    <section>
+      <h1>The score is: {playerScore}</h1>
+      <button onClick={() => {setGameInputStatus(true)}}>PLAY AGAIN</button>
+      <button onClick={(resetPage)}>PICK A NEW PLANT</button>
+    </section>
   )
-
 }
 
 export default GameResult;

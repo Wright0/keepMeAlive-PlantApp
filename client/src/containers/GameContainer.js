@@ -14,7 +14,8 @@ class GameContainer extends Component{
         lightRequirement: "",
         temperature: null
       },
-      playerScore: 0
+      playerScore: 0,
+      isGameInInputStage:true
     }
   }
   //The QuizForm will set the state on submit. When the playerAnswers state here changes, this component will calculate the score by comparing the answers to the plant data prop.
@@ -37,9 +38,10 @@ class GameContainer extends Component{
       lightRequirement: answers.lightRequirement,
       temperature: answers.temperature
     }
-    const updatedPlayerName = answers.playerName
-    this.setState({playerAnswers: updatedPlayerAnswers})
-    this.setState({playerName: updatedPlayerName})
+    const updatedPlayerName = answers.playerName;
+    this.setState({playerAnswers: updatedPlayerAnswers});
+    this.setState({playerName: updatedPlayerName});
+    this.setGameInputStatus(false);
   }
 
   saveGameDataToDb = () => {
@@ -79,16 +81,39 @@ class GameContainer extends Component{
     return score
   }
 
+  setGameInputStatus = (gameStatus) => {
+    this.setState({ isGameInInputStage: gameStatus });
+  }
+
+  resetPage = () => {
+    this.props.setGameStatus(false);
+    this.setGameInputStatus(true);
+    this.props.resetSelectedPlant(null);
+    this.props.setSelectedPlantId(null);
+    this.props.setIsPlantSelected(false);
+  }
+
   render(){
     if (!this.props.isGameActive) return null;
 
     return (
-      <>
-      <h1>This is the game</h1>
-      <GamePlantImage/>
-      <QuizForm onAnswersSubmit={this.addAnswers}/>
-      <GameResult playerScore={this.state.playerScore}/>
-      </>
+      <section>
+        <h1>This is the game</h1>
+        <GamePlantImage/>
+
+        <QuizForm
+          onAnswersSubmit={this.addAnswers}
+          isGameInInputStage={this.state.isGameInInputStage}
+          setGameInputStatus = {this.setGameInputStatus}
+        />
+
+        <GameResult
+          playerScore={this.state.playerScore}
+          isGameInInputStage={this.state.isGameInInputStage}
+          setGameInputStatus = {this.setGameInputStatus}
+          resetPage = {this.resetPage}
+        />
+      </section>
     )
   }
 }

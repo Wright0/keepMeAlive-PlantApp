@@ -1,10 +1,11 @@
 import React from 'react';
 
-const SelectPlant = ({isPlantSelected, plants, setSelectedPlantId}) => {
+const SelectPlant = ({plants, setSelectedPlantId, isPlantSelected, setIsPlantSelected}) => {
 if (isPlantSelected) return null;
 
   function handleSelectedPlant(event){
-    setSelectedPlantId(event.target.value)
+    setSelectedPlantId(event.target.value);
+    setIsPlantSelected(true);
   }
 
   const plantItems = plants.map(plant => {
