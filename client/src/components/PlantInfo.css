@@ -3,7 +3,7 @@ article.plant-info {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr 4fr 1fr;
+    grid-template-rows: 1fr 3fr 4.5fr 1fr;
 }
 
 article.plant-info > h1 {
@@ -18,7 +18,7 @@ article.plant-info > h1 {
 }
 
 #medium-aloe {
-    height: 150px;
+    height: 175px;
 }
 
 article > section.plant-facts {
@@ -38,8 +38,8 @@ article > figure {
     justify-content: center;
 
     border: 2px solid #045206;
-    padding: 10px;
-    margin: 10px;
+    /* padding: 2px; */
+    margin: 20px;
 }
 
 article.plant-info > section.plant-care-instructions {
@@ -63,9 +63,16 @@ article.plant-info > #plant-info-buttons > button {
 }
 
 article.plant-info >  section.plant-care-instructions > dl {
+    margin: 0px;
     padding: 10px;
 }
 
-/* .plant-info dd {
-    margin: 0 0 0 4px;
-} */
+article.plant-info dt {
+    color: #045206;
+    font-weight: 600;
+    margin: 10px;
+}
+
+article.plant-info >  section.plant-care-instructions > h2 {
+    margin: 5px 0px;
+}
