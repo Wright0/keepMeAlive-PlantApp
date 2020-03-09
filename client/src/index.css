@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Spartan:300,400&display=swap');
 
 body {
-  margin: 2em;
+  margin: 5em;
   font-family: 'Roboto', sans-serif;
   background-color: #f8f8ff ;
   -webkit-font-smoothing: antialiased;
@@ -10,4 +10,18 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-family: 'Spartan', sans-serif;
+}
+
+#website-title {
+  display: flex;
+  justify-content: center;
+}
+
+button.navigate{
+  background-color: green;
+  color: white;
+  width: 200px;
+  height: 50px;
+  font-size: 14px;
+  cursor: pointer;
 }

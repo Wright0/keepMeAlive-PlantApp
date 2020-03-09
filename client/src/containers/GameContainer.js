@@ -98,7 +98,7 @@ class GameContainer extends Component{
 
     return (
       <section>
-        <h1>This is the game</h1>
+        <h2>Let's play:</h2>
         <GamePlantImage/>
 
         <QuizForm

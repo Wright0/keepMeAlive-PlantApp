@@ -1,3 +1,7 @@
+section.select-plant {
+    margin: 2em;
+}
+
 .aloe-vera {
     width: 100px;
 }
@@ -5,21 +9,27 @@
 ul.select-plant {
     margin: 10px;
     padding: 0px;
+    list-style-type: none;
+
     display: flex;
     flex-direction: row;
-    list-style-type: none;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;    
 }
 
 li.select-plant {
    padding: 10px;
+   margin: 10px;
    min-width: 200px;
    border: 2px solid green;
 
    color: green;
+   font-size: 1.1em;
+
    display: flex;
    flex-direction: column;
    align-items: center;
+
    cursor: pointer;
 }
 

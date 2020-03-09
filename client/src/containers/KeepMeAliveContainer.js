@@ -62,8 +62,7 @@ class KeepMeAliveContainer extends Component {
   render(){
     return (
       <>
-        <h1>Keep Me Alive!</h1>
-        <h2>Helping plant owners not kill their plants since 2020</h2>
+        <h1 id="website-title">Keep Me Alive!</h1>
 
         <SelectPlant
           plants={this.state.plants}

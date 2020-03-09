@@ -6,9 +6,6 @@ const SelectPlant = ({plants, setSelectedPlantId, isPlantSelected, setIsPlantSel
 if (isPlantSelected) return null;
 
   function handleSelectedPlant(event){
-    console.log("etv", event.target.value);
-    console.log("et", event.target);
-    
     setSelectedPlantId(event.target.value);
     setIsPlantSelected(true);
   }
@@ -33,7 +30,7 @@ if (isPlantSelected) return null;
 
   return (
     <section className="select-plant">
-      <h3>Select a plant</h3>
+      <h2>Select a plant:</h2>
       <ul className="select-plant">
         { plantItems }
       </ul>
