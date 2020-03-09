@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import GameResult from '../components/GameResult.js';
-import QuizForm from '../components/QuizForm.js';
-import GamePlantImage from '../components/GamePlantImage.js';
-import Timer from '../components/Timer.js'
+import GameResult from '../components/gameComponents/GameResult.js';
+import QuizForm from '../components/gameComponents/QuizForm.js';
+import GamePlantImage from '../components/gameComponents/GamePlantImage.js';
+import Timer from '../components/gameComponents/Timer.js'
 
 class GameContainer extends Component{
   constructor(props){
@@ -29,8 +29,7 @@ class GameContainer extends Component{
       if(this.state.playerAnswers.wateringFrequency && this.state.playerAnswers.fertilisationFrequency && this.state.playerAnswers.lightRequirement && this.state.playerAnswers.temperature){
         this.setGameInputStatus(false)
       }
-    }
-    
+    }  
   }
 
   addAnswer = (answer) => {

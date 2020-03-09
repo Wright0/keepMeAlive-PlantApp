@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import SelectPlant from '../components/SelectPlant.js';
-import PlantInfo from '../components/PlantInfo.js';
+import SelectPlant from '../components/keepMeAliveComponents/SelectPlant.js';
+import PlantInfo from '../components/keepMeAliveComponents/PlantInfo.js';
 import GameContainer from './GameContainer.js';
-import SiteHeader from '../components/SiteHeader.js';
+import SiteHeader from '../components/keepMeAliveComponents/SiteHeader.js';
 
 class KeepMeAliveContainer extends Component {
   constructor(props){

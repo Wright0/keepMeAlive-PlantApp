@@ -1,5 +1,5 @@
 import React from 'react';
-import aloeVeraMedium from '../assets/aloevera2.png';
+import aloeVeraMedium from '../../assets/aloevera2.png';
 import './SelectPlant.css';
 
 const SelectPlant = ({plants, setSelectedPlantId, isPlantSelected, setIsPlantSelected}) => {
