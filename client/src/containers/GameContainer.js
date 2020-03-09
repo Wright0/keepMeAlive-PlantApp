@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import GameResult from '../components/GameResult.js';
 import QuizForm from '../components/QuizForm.js';
 import GamePlantImage from '../components/GamePlantImage.js';
+import Timer from '../components/Timer.js'
 
 class GameContainer extends Component{
   constructor(props){
@@ -18,9 +19,6 @@ class GameContainer extends Component{
       isGameInInputStage:true
     }
   }
-  //The QuizForm will set the state on submit. When the playerAnswers state here changes, this component will calculate the score by comparing the answers to the plant data prop.
-  //The score + player's name (date?) will get POSTed to the database at that point (after the score is calculated).
-  //This component will then send the score and the player's answers down to the GameResult component.
 
   componentDidUpdate(prevProps, prevState){
     if(prevState.playerAnswers !== this.state.playerAnswers){
@@ -99,6 +97,7 @@ class GameContainer extends Component{
     return (
       <section>
         <h2>Let's play:</h2>
+        <Timer/>
         <GamePlantImage/>
 
         <QuizForm
@@ -117,7 +116,5 @@ class GameContainer extends Component{
     )
   }
 }
-      //plant images sent down as props. Conditional logic that decides which image to send down based on score. + a default plant.
-      //playerAnswers + playerScore sent down as a prop. This component is swapped out with Quiz Form on score calculation?
 
 export default GameContainer;
