@@ -4,25 +4,30 @@ class QuizForm extends Component  {
   constructor(props){
     super(props)
     this.state = {
-      playerName: "",
-      wateringFrequency: 5,
-      fertilisationFrequency: 5,
-      lightRequirement: "medium",
-      temperature: 5
+      playerName: null,
+      wateringFrequency: null,
+      fertilisationFrequency: null,
+      lightRequirement: null,
+      temperature: null
     }
   }
 
-  handleScoreSubmit = (event) => {
-    event.preventDefault()
-    const newAnswers = {
-      playerName: this.state.playerName,
-      wateringFrequency: this.state.wateringFrequency,
-      fertilisationFrequency: this.state.fertilisationFrequency,
-      lightRequirement: this.state.lightRequirement,
-      temperature: this.state.temperature
+  handleScoreSubmit = ( propertyName) => {
+    const newPropertyValue = this.state[propertyName]
+    const answersKeysArray = Object.keys(this.state)
+    answersKeysArray.forEach(key => {
+      if (key === propertyName){
+        this.props.onAnswersSubmit({[propertyName]: newPropertyValue})
+      }
+    })
+
+    // this.props.setGameInputStatus(false)
+  }
+
+  renderAnswerSubmitButton = (propertyName) => {
+    if(this.props.defaultGameAnswers[propertyName] === null){
+      return <button onClick={() => {this.handleScoreSubmit( propertyName)}}>Submit</button>
     }
-    this.props.onAnswersSubmit(newAnswers)
-    this.props.setGameInputStatus(false)
   }
 
   handlePlayerNameChange = (event) => {
@@ -47,7 +52,7 @@ class QuizForm extends Component  {
     if (!this.props.isGameInInputStage) return null;
 
     return (
-      <form onSubmit={this.handleScoreSubmit}>
+      <>
         <label htmlFor="playerName" > Enter Player Name: </label>
         <br/>
         <input onChange={this.handlePlayerNameChange} type="text" id="playerName"/>
@@ -56,11 +61,13 @@ class QuizForm extends Component  {
         <span>  {this.state.wateringFrequency}</span>
         <br/>
         <input onChange={this.handleWateringFrequencyChange} value={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
+        {this.renderAnswerSubmitButton("wateringFrequency")}
         <br/>
         <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
         <span>  {this.state.fertilisationFrequency}</span>
         <br/>
         <input onChange={this.handleFertilisationFrequencyChange} value={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
+        {this.renderAnswerSubmitButton("fertilisationFrequency")}
         <br/>
         <label htmlFor="light" >Light Requirement:</label>
         <span>  {this.state.lightRequirement}</span>
@@ -70,14 +77,15 @@ class QuizForm extends Component  {
           <option value="indirect" >Indirect </option>
           <option value="direct" >Direct </option>
         </select>
+        {this.renderAnswerSubmitButton("lightRequirement")}
         <br/>
         <label htmlFor="temperature" >Temperature:</label>
         <span>  {this.state.temperature}</span>
         <br/>
         <input onChange={this.handleTemperatureChange} value={this.state.temperature} type="range" id="temperature" min="0" max="50" />
+        {this.renderAnswerSubmitButton("temperature")}
         <br/>
-        <input type="submit" value="Submit Answers" />
-      </form>
+      </>
     )
   }
 

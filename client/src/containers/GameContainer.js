@@ -12,7 +12,7 @@ class GameContainer extends Component{
       playerAnswers: {
         wateringFrequency: null,
         fertilisationFrequency: null,
-        lightRequirement: "",
+        lightRequirement: null,
         temperature: null
       },
       playerScore: 0,
@@ -22,24 +22,19 @@ class GameContainer extends Component{
 
   componentDidUpdate(prevProps, prevState){
     if(prevState.playerAnswers !== this.state.playerAnswers){
+      
       const score = this.calculateGameScore()
       this.setState({playerScore: score}, () => {
         this.saveGameDataToDb()
       })
     }
+    
   }
 
-  addAnswers = (answers) => {
-    const updatedPlayerAnswers = {
-      wateringFrequency: answers.wateringFrequency,
-      fertilisationFrequency: answers.fertilisationFrequency,
-      lightRequirement: answers.lightRequirement,
-      temperature: answers.temperature
-    }
-    const updatedPlayerName = answers.playerName;
-    this.setState({playerAnswers: updatedPlayerAnswers});
-    this.setState({playerName: updatedPlayerName});
-    this.setGameInputStatus(false);
+  addAnswer = (answer) => {
+    const newAnswers = {...this.state.playerAnswers, ...answer}  
+    this.setState({playerAnswers: newAnswers})
+    
   }
 
   saveGameDataToDb = () => {
@@ -101,9 +96,11 @@ class GameContainer extends Component{
         <GamePlantImage/>
 
         <QuizForm
-          onAnswersSubmit={this.addAnswers}
+          onAnswersSubmit={this.addAnswer}
           isGameInInputStage={this.state.isGameInInputStage}
           setGameInputStatus = {this.setGameInputStatus}
+          defaultGameAnswers = {this.state.playerAnswers}
+          setGameInputStatus = {this.state.setGameInputStatus}
         />
 
         <GameResult
