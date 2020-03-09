@@ -7,12 +7,14 @@ const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => 
 
   return (
     <article className="plant-info">
+
       <h1>{plant.commonName}</h1>
+
       <section className="plant-facts">
-        <div id="plant-scientific-name">
-          <p className="care-title">scientific name:</p> 
-          <p>{plant.scientificName}</p>
-        </div>
+        <dl id="plant-scientific-name">
+          <dt>scientific name:</dt> 
+          <dd>{plant.scientificName}</dd>
+        </dl>
         <p>{plant.description}</p>
         <img
         src={aloeVeraMedium}
@@ -23,28 +25,22 @@ const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => 
 
       <section className="plant-care-instructions">
         <h2>Care instructions:</h2>
-        <ul>
-          <li>
-            <p className="care-title">Watering:</p>
-            <p className="care-info">You should water this plant about {plant.wateringFrequency} times a month. When the top 2 inches of soil are dry, this is a good time to do it.</p>
-          </li>
+        <dl>
+            <dt>Watering:</dt>
+            <dd>You should water this plant about {plant.wateringFrequency} times a month. When the top 2 inches of soil are dry, this is a good time to do it.</dd>
 
-          <li>
-            <p className="care-title">Fertilisation:</p>
-            <p className="care-info">This plant requires fertilisation {plant.fertilisationFrequency} times a month. The best time to do this is during watering.</p>
-          </li>
+            <dt>Fertilisation:</dt>
+            <dd>This plant requires fertilisation {plant.fertilisationFrequency} times a month. The best time to do this is during watering.</dd>
 
-          <li>
-            <p className="care-title">Light requirements:</p>
-            <p className="care-info">This plant prefers {plant.lightRequirement} light.</p>
-          </li>
-
-          <li>
-            <p className="care-title">Temperature requirements:</p>
-            <p className="care-info">This plant thrives in temperatures between {plant.minTemperature}°C and {plant.maxTemperature}°C.</p>
-          </li>
-        </ul>
+            <dt>Light requirements:</dt>
+            <dd>This plant prefers {plant.lightRequirement} light.</dd>
+          
+            <dt>Temperature requirements:</dt>
+            <dd>This plant thrives in temperatures between {plant.minTemperature}°C and {plant.maxTemperature}°C.</dd>
+          
+        </dl>
       </section>
+
       <div>
         <button className="navigate" onClick={() => {setGameStatus(true)}}>PLAY</button>
         <button className="navigate" onClick={returnToPickAPlant}>PICK A DIFFERENT PLANT</button>
