@@ -6,8 +6,6 @@ const SelectPlant = ({plants, setSelectedPlantId, isPlantSelected, setIsPlantSel
 if (isPlantSelected) return null;
 
   function handleSelectedPlant(event){
-    console.log(event.target.value);
-    
     setSelectedPlantId(event.target.value);
     setIsPlantSelected(true);
   }
