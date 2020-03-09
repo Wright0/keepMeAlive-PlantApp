@@ -21,12 +21,14 @@ class GameContainer extends Component{
   }
 
   componentDidUpdate(prevProps, prevState){
-    if(prevState.playerAnswers !== this.state.playerAnswers){
-      
+    if(prevState.playerAnswers !== this.state.playerAnswers){     
       const score = this.calculateGameScore()
       this.setState({playerScore: score}, () => {
         this.saveGameDataToDb()
       })
+      if(this.state.playerAnswers.wateringFrequency && this.state.playerAnswers.fertilisationFrequency && this.state.playerAnswers.lightRequirement && this.state.playerAnswers.temperature){
+        this.setGameInputStatus(false)
+      }
     }
     
   }
