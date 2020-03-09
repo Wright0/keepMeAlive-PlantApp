@@ -2,6 +2,12 @@ section.select-plant {
     margin: 2em;
 }
 
+section.select-plant > h2 {
+    display: flex;
+    justify-content: center;
+    font-size: 1em;
+}
+
 .aloe-vera {
     width: 100px;
 }
@@ -20,10 +26,10 @@ ul.select-plant {
 li.select-plant {
    padding: 10px;
    margin: 10px;
-   min-width: 200px;
-   border: 2px solid green;
+   min-width: 300px;
+   border: 1.5px solid #DEDEDE;
 
-   color: green;
+   color: #045206;
    font-size: 1.1em;
 
    display: flex;

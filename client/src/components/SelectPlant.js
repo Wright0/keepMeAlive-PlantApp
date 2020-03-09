@@ -30,7 +30,7 @@ if (isPlantSelected) return null;
 
   return (
     <section className="select-plant">
-      <h2>Select a plant:</h2>
+      <h2>SELECT A PLANT:</h2>
       <ul className="select-plant">
         { plantItems }
       </ul>

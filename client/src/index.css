@@ -3,18 +3,14 @@
 body {
   margin: 5em;
   font-family: 'Roboto', sans-serif;
-  background-color: #f8f8ff ;
+  background-color: #FAFAFA ;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Spartan', sans-serif;
-}
-
-#website-title {
-  display: flex;
-  justify-content: center;
+  color: #424246;
 }
 
 button.navigate{
