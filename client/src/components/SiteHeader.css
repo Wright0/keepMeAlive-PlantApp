@@ -1,0 +1,14 @@
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header > h1 {
+    color: #045206;
+}
+
+header > h2 {
+    font-size: 1.2em;
+}

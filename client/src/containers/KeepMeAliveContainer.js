@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SelectPlant from '../components/SelectPlant.js';
 import PlantInfo from '../components/PlantInfo.js';
 import GameContainer from './GameContainer.js';
+import SiteHeader from '../components/SiteHeader.js';
 
 class KeepMeAliveContainer extends Component {
   constructor(props){
@@ -57,7 +58,7 @@ class KeepMeAliveContainer extends Component {
   render(){
     return (
       <>
-        <h1 id="website-title">Keep Me Alive!</h1>
+        <SiteHeader/>
 
         <SelectPlant
           plants={this.state.plants}
