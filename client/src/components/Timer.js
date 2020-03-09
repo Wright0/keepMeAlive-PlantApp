@@ -22,7 +22,6 @@ export default class Timer extends Component {
       }
 
     }, 1000)
-
     
   }
 
@@ -30,11 +29,18 @@ export default class Timer extends Component {
     clearInterval(this.myInterval)
   }
 
+  timesUpNotification = () => {
+    if(this.state.seconds === 0){
+      return <h3>Time's Up</h3>
+    }
+  }
+
 
   render() {
     return (
       <div>
         <h3>Time Remaining: {this.state.seconds} seconds</h3>
+        {this.timesUpNotification()}
       </div>
     )
   }
