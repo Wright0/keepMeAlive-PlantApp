@@ -3,6 +3,7 @@ import GameResult from '../components/gameComponents/GameResult.js';
 import QuizForm from '../components/gameComponents/QuizForm.js';
 import GamePlantImage from '../components/gameComponents/GamePlantImage.js';
 import Timer from '../components/gameComponents/Timer.js'
+import './GameContainer.css';
 
 class GameContainer extends Component{
   constructor(props){
@@ -91,7 +92,7 @@ class GameContainer extends Component{
     if (!this.props.isGameActive) return null;
 
     return (
-      <section>
+      <section className="game">
         <h2>Let's play:</h2>
         <Timer/>
         <GamePlantImage/>
