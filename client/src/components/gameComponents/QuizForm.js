@@ -74,40 +74,35 @@ class QuizForm extends Component  {
     this.setState({lightRequirement: event.target.value})
   }
 
-
   handleTemperatureChange = (event) => {
     const newValue = parseInt(event.target.value)
     this.setState({temperature: newValue})
   }
 
   validateLightInput = () => {
-    const value = this.state.lightRequirement
-    if (value === null) {
-      alert("Light must be selected");
+    if (this.state.lightRequirement === null) {
+      alert("Light requirement must be selected");
       return false;
     }
   }
 
   validateWateringFrequencyInput = () => {
-    const value = this.state.wateringFrequency
-    if (value === null) {
-      alert("WATERING please drag the slider first before submitting");
+    if (this.state.wateringFrequency === null) {
+      alert("Please drag the slider to select a value before submitting");
       return false;
     }
   }
 
   validateFertilisationFrequencyInput = () => {
-    const value = this.state.fertilisationFrequency
-    if (value === null) {
-      alert("FERTILISATION please drag the slider first before submitting");
+    if (this.state.fertilisationFrequency === null) {
+      alert("Please drag the slider to select a value before submitting");
       return false;
     }
   }
 
   validateTemperatureInput = () => {
-    const value = this.state.temperature
-    if (value === null) {
-      alert("TEMPERATURE please drag the slider first before submitting");
+    if (this.state.temperature === null) {
+      alert("Please drag the slider to select a value before submitting");
       return false;
     }
   }
