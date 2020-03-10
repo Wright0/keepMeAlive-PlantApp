@@ -47,15 +47,6 @@ class KeepMeAliveContainer extends Component {
       .catch(err => console.error)
   }
 
-  // componentDidUpdate(prevProps, prevState){
-  //   if (prevState.selectedPlantId !== this.state.selectedPlantId && this.state.selectedPlantId !== null) {
-  //     fetch(`http://localhost:8080/plants/${this.state.selectedPlantId}`)
-  //       .then(response => response.json())
-  //       .then(plantObject => this.setState({selectedPlant: plantObject}))
-  //       .catch(err => console.error)
-  //   }
-  // }
-
   render(){
     return (
       <>
@@ -86,7 +77,12 @@ class KeepMeAliveContainer extends Component {
             />
 
           <Route path="/:plantId" 
-            component={PlantInfo}
+            render={() =>
+              <PlantInfo 
+                setGameStatus={this.setGameStatus} 
+                returnToPickAPlant = {this.returnToPickAPlant}
+              />
+            }
             />
           </Switch>
         </Router>
@@ -106,7 +102,6 @@ setSelectedPlantId={this.setSelectedPlantId}
 isPlantSelected={this.state.isPlantSelected}
 setIsPlantSelected={this.setIsPlantSelected}
 />
-
 
 
 <GameContainer
