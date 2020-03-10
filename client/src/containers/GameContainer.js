@@ -122,6 +122,7 @@ class GameContainer extends Component{
         temperature: null
       }
       this.setState({playerAnswers: defaultPlayerAnswers}, () => this.setGameInputStatus(true))
+      this.setState({playerScore: 4})
     }
 
     resetPage = () => {
