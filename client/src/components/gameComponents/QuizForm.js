@@ -54,7 +54,7 @@ class QuizForm extends Component  {
 
     return (
 
-      <article class="plant-quiz">
+      <article className="plant-quiz">
         <div id="quiz-player-name">
           <label htmlFor="playerName" > Enter Player Name: </label>
           <input onChange={this.handlePlayerNameChange} type="text" id="playerName"/>
