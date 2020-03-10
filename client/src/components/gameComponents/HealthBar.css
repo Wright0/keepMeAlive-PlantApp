@@ -5,8 +5,30 @@
     border-radius: 50px;
     border: 1px solid #333;
   }
-  .filler {
+  .blue-filler {
+    background:#0537c2;
+    height: 100%;
+    border-radius: inherit;
+    transition: width .2s ease-in;
+    width: 0;
+  }
+  
+  .green-filler {
     background:#045206;
+    height: 100%;
+    border-radius: inherit;
+    transition: width .2s ease-in;
+    width: 0;
+  }
+  .red-filler {
+    background:#850202;
+    height: 100%;
+    border-radius: inherit;
+    transition: width .2s ease-in;
+    width: 0;
+  }
+  .yellow-filler {
+    background:#8a9400;
     height: 100%;
     border-radius: inherit;
     transition: width .2s ease-in;
