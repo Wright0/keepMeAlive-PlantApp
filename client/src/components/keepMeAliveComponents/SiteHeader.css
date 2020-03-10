@@ -5,7 +5,10 @@ header {
     align-items: center;
 }
 
-header > h1 {
+header > a {
+    text-decoration: none;
+}
+header > a > h1 {
     color: #045206;
 }
 

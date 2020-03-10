@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import aloeVeraMedium from '../../assets/aloevera2.png';
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import './PlantInfo.css'
 
-const PlantInfo = (props) => {
+const PlantInfo = () => {
   
   const [plant, setPlant] = useState({});
 
@@ -61,8 +61,8 @@ const PlantInfo = (props) => {
       </section>
 
       <div id="plant-info-buttons">
-        <button className="navigate" onClick={() => {props.setGameStatus(true)}}>PLAY</button>
-        <button className="navigate" onClick={props.returnToPickAPlant}>PICK A DIFFERENT PLANT</button>
+        <Link to={`/${plantId}/game`}><button className="navigate">PLAY</button></Link>
+        <Link to={"/"}><button className="navigate">PICK A DIFFERENT PLANT</button></Link> 
       </div>
 
     </article>

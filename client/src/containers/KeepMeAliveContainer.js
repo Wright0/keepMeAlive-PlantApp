@@ -12,31 +12,16 @@ class KeepMeAliveContainer extends Component {
       plants: [],
       selectedPlant: null,
       selectedPlantId: null,
-      isGameContainerActive: false,
-      isPlantSelected:false
+      isGameContainerActive: false
     }
-  }
-
-  setSelectedPlantId = (plantId) => {
-    this.setState({selectedPlantId: plantId});
   }
 
   resetSelectedPlant = () => {
     this.setState({selectedPlant: null});
   }
 
-  setIsPlantSelected = (status) => {
-    this.setState({isPlantSelected: status})
-  }
-
   setGameStatus = (gameStatus) => {
     this.setState({isGameContainerActive: gameStatus})
-  }
-
-  returnToPickAPlant = () => {
-    this.resetSelectedPlant(null);
-    this.setSelectedPlantId(null);
-    this.setIsPlantSelected(false);
   }
 
   componentDidMount(){
@@ -50,17 +35,13 @@ class KeepMeAliveContainer extends Component {
   render(){
     return (
       <>
-        <SiteHeader/>
-
         <Router>
+        <SiteHeader/>
           <Switch>
             <Route exact path="/" 
             render={() => 
               <SelectPlant
               plants={this.state.plants}
-              setSelectedPlantId={this.setSelectedPlantId}
-              isPlantSelected={this.state.isPlantSelected}
-              setIsPlantSelected={this.setIsPlantSelected}
               />}
             />
 
@@ -76,14 +57,7 @@ class KeepMeAliveContainer extends Component {
               />}
             />
 
-          <Route path="/:plantId" 
-            render={() =>
-              <PlantInfo 
-                setGameStatus={this.setGameStatus} 
-                returnToPickAPlant = {this.returnToPickAPlant}
-              />
-            }
-            />
+          <Route path="/:plantId" component={PlantInfo}/>
           </Switch>
         </Router>
 
@@ -93,22 +67,3 @@ class KeepMeAliveContainer extends Component {
 }
 
 export default KeepMeAliveContainer;
-
-
-
-{/* <SelectPlant
-plants={this.state.plants}
-setSelectedPlantId={this.setSelectedPlantId}
-isPlantSelected={this.state.isPlantSelected}
-setIsPlantSelected={this.setIsPlantSelected}
-/>
-
-
-<GameContainer
-plant={this.state.selectedPlant}
-isGameActive={this.state.isGameActive}
-setGameStatus={this.setGameStatus}
-setSelectedPlantId={this.setSelectedPlantId}
-setIsPlantSelected={this.setIsPlantSelected}
-resetSelectedPlant={this.resetSelectedPlant}
-/> */}

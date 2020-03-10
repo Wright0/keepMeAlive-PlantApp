@@ -1,22 +1,15 @@
 import React from 'react';
 import aloeVeraMedium from '../../assets/aloevera2.png';
-import './SelectPlant.css';
 import { Link } from 'react-router-dom';
+import './SelectPlant.css';
 
-const SelectPlant = ({plants, setSelectedPlantId, isPlantSelected, setIsPlantSelected}) => {
-if (isPlantSelected) return null;
-
-  function handleSelectedPlant(event){
-    setSelectedPlantId(event.target.value);
-    setIsPlantSelected(true);
-  }
+const SelectPlant = ({plants}) => {
 
   const plantItems = plants.map(plant => {
     return (
     <Link to={`/${plant.id}`} key={plant.id}>
       <li 
         value={plant.id}
-        onClick={ handleSelectedPlant }
       >
         <img
           src={aloeVeraMedium}
