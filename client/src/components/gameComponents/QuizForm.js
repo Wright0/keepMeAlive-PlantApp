@@ -22,7 +22,10 @@ class QuizForm extends Component  {
   }
 
   handleScoreSubmit = ( propertyName) => {
-    if (this.validateLightInput() === false){
+    if ((propertyName === "lightRequirement" && this.validateLightInput() === false) ||
+    (propertyName === "wateringFrequency" && this.validateWateringFrequencyInput() === false) ||
+    (propertyName === "fertilisationFrequency" && this.validateFertilisationFrequencyInput() === false) ||
+    (propertyName === "temperature" && this.validateTemperatureInput() ===false) ){
       return;
     }
     else {
@@ -68,7 +71,7 @@ class QuizForm extends Component  {
     this.setState({fertilisationFrequency: newValue})
   }
   handleLightRequirementChange = (event) => {
-      this.setState({lightRequirement: event.target.value})
+    this.setState({lightRequirement: event.target.value})
   }
 
 
@@ -78,12 +81,37 @@ class QuizForm extends Component  {
   }
 
   validateLightInput = () => {
-  const value = this.state.lightRequirement
-  if (value === null) {
-    alert("Light must be selected");
-    return false;
+    const value = this.state.lightRequirement
+    if (value === null) {
+      alert("Light must be selected");
+      return false;
+    }
   }
-}
+
+  validateWateringFrequencyInput = () => {
+    const value = this.state.wateringFrequency
+    if (value === null) {
+      alert("WATERING please drag the slider first before submitting");
+      return false;
+    }
+  }
+
+  validateFertilisationFrequencyInput = () => {
+    const value = this.state.fertilisationFrequency
+    if (value === null) {
+      alert("FERTILISATION please drag the slider first before submitting");
+      return false;
+    }
+  }
+
+  validateTemperatureInput = () => {
+    const value = this.state.temperature
+    if (value === null) {
+      alert("TEMPERATURE please drag the slider first before submitting");
+      return false;
+    }
+  }
+
   render(){
 
     if (!this.props.isQuizFormActive) return null;
@@ -92,41 +120,41 @@ class QuizForm extends Component  {
 
       <article className="plant-quiz">
       <div id="quiz-player-name">
-        <label htmlFor="playerName" > Enter Player Name: </label>
-        <input onChange={this.handlePlayerNameChange} type="text" id="playerName"/>
+      <label htmlFor="playerName" > Enter Player Name: </label>
+      <input onChange={this.handlePlayerNameChange} type="text" id="playerName"/>
       </div>
 
       <div id="quiz-watering">
-        <label htmlFor="watering" >Watering Frequency:</label>
-        <p>{this.state.wateringFrequency}</p>
-        <input onChange={this.handleWateringFrequencyChange} value={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
-        {this.renderAnswerSubmitButton("wateringFrequency")}
+      <label htmlFor="watering" >Watering Frequency:</label>
+      <p>{this.state.wateringFrequency}</p>
+      <input onChange={this.handleWateringFrequencyChange} value={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
+      {this.renderAnswerSubmitButton("wateringFrequency")}
       </div>
 
       <div id="quiz-fertilisation">
-        <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
-        <p>{this.state.fertilisationFrequency}</p>
-        <input onChange={this.handleFertilisationFrequencyChange} value={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
-        {this.renderAnswerSubmitButton("fertilisationFrequency")}
+      <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
+      <p>{this.state.fertilisationFrequency}</p>
+      <input onChange={this.handleFertilisationFrequencyChange} value={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
+      {this.renderAnswerSubmitButton("fertilisationFrequency")}
       </div>
 
       <div id="quiz-light">
-        <label htmlFor="light" >Light Requirement:</label>
-        <p>{this.state.lightRequirement}</p>
-        <select value={this.state.lightRequirement } onChange={this.handleLightRequirementChange} id="light" required>
-          <option selected disabled > Select... </option>
-          <option value="shade"> Shade </option>
-          <option value="indirect" >Indirect </option>
-          <option value="direct" >Direct </option>
-        </select>
-        {this.renderAnswerSubmitButton("lightRequirement")}
+      <label htmlFor="light" >Light Requirement:</label>
+      <p>{this.state.lightRequirement}</p>
+      <select value={this.state.lightRequirement } onChange={this.handleLightRequirementChange} id="light" required>
+      <option selected disabled > Select... </option>
+      <option value="shade"> Shade </option>
+      <option value="indirect" >Indirect </option>
+      <option value="direct" >Direct </option>
+      </select>
+      {this.renderAnswerSubmitButton("lightRequirement")}
       </div>
 
       <div id="quiz-temperature">
-        <label htmlFor="temperature" >Temperature:</label>
-        <p>{this.state.temperature}</p>
-        <input onChange={this.handleTemperatureChange} value={this.state.temperature} type="range" id="temperature" min="0" max="50" />
-        {this.renderAnswerSubmitButton("temperature")}
+      <label htmlFor="temperature" >Temperature:</label>
+      <p>{this.state.temperature}</p>
+      <input onChange={this.handleTemperatureChange} value={this.state.temperature} type="range" id="temperature" min="0" max="50" />
+      {this.renderAnswerSubmitButton("temperature")}
       </div>
 
       </article>
