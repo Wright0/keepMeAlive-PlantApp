@@ -26,12 +26,10 @@ class GameContainer extends Component{
     if(prevState.playerAnswers !== this.state.playerAnswers){
       const score = this.calculateGameScore()
       console.log("calculted score", score);
-      // if (prevState.playerScore !== this.state.playerScore){
       this.setState({playerScore: score})
       console.log("state score:", this.state.playerScore);
       // this.saveGameDataToDb()
-      // })
-      // }
+
       if(this.state.playerAnswers.wateringFrequency && this.state.playerAnswers.fertilisationFrequency && this.state.playerAnswers.lightRequirement && this.state.playerAnswers.temperature){
         this.setGameInputStatus(false)
       }
@@ -68,23 +66,45 @@ class GameContainer extends Component{
     if (this.state.playerAnswers.wateringFrequency  ){
       if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
         score += 1
-      } else { score -= 1 }
+      } else {
+        score -= 1
+      }
+      const answer = {wateringFrequency: null}
+      const newAnswers = { ... this.state.playerAnswers, ...answer}
+      this.setState({playerAnswers: newAnswers})
     }
     if (this.state.playerAnswers.fertilisationFrequency ) {
       if (this.props.plant.fertilisationFrequency === this.state.playerAnswers.fertilisationFrequency ){
         score +=1
-      } else { score -= 1 }
+      } else {
+        score -= 1
+      }
+      const answer = {fertilisationFrequency: null}
+      const newAnswers = { ... this.state.playerAnswers, ...answer}
+      this.setState({playerAnswers: newAnswers})
     }
     if( this.state.playerAnswers.lightRequirement ) {
+      console.log('lightRequirementChecked')
+
       if (this.props.plant.lightRequirement === this.state.playerAnswers.lightRequirement ){
         score +=1
-      } else { score -= 1 }
+      } else {
+        score -= 1
+      }
+      const answer = {lightRequirement: null}
+      const newAnswers = { ... this.state.playerAnswers, ...answer}
+      this.setState({playerAnswers: newAnswers})
     }
     if ( this.state.playerAnswers.temperature) {
+      console.log('temperatureChecked')
+
       if (this.state.playerAnswers.temperature >= this.props.plant.minTemperature &&
         this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
           score +=1
         } else { score -= 1 }
+        const answer = {temperature: null}
+        const newAnswers = { ... this.state.playerAnswers, ...answer}
+        this.setState({playerAnswers: newAnswers})
       }
       return score
     }
