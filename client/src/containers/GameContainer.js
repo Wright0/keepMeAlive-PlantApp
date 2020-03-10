@@ -113,13 +113,23 @@ class GameContainer extends Component{
       this.setState({ isGameInInputStage: gameStatus });
     }
 
-    resetPage = () => {
-      this.props.setGameStatus(false);
-      this.setGameInputStatus(true);
-      this.props.resetSelectedPlant(null);
-      this.props.setSelectedPlantId(null);
-      this.props.setIsPlantSelected(false);
+  playAgain = () => {
+    const defaultPlayerAnswers = {
+      wateringFrequency: null,
+      fertilisationFrequency: null,
+      lightRequirement: null,
+      temperature: null
     }
+    this.setState({playerAnswers: defaultPlayerAnswers}, () => this.setGameInputStatus(true))
+  }
+
+  resetPage = () => {
+    this.props.setGameStatus(false);
+    this.setGameInputStatus(true);
+    this.props.resetSelectedPlant(null);
+    this.props.setSelectedPlantId(null);
+    this.props.setIsPlantSelected(false);
+  }
 
     render(){
       if (!this.props.isGameActive) return null;
@@ -129,6 +139,7 @@ class GameContainer extends Component{
         <h2>Let's play:</h2>
         <Timer/>
         <GamePlantImage/>
+        <h3>{this.props.plant.commonName}</h3>
 
         <HealthBar score={this.state.playerScore}/>
 
@@ -141,10 +152,10 @@ class GameContainer extends Component{
         />
 
         <GameResult
-        playerScore={this.state.playerScore}
-        isGameInInputStage={this.state.isGameInInputStage}
-        setGameInputStatus = {this.setGameInputStatus}
-        resetPage = {this.resetPage}
+          playerScore={this.state.playerScore}
+          isGameInInputStage={this.state.isGameInInputStage}
+          resetPage = {this.resetPage}
+          playAgain={this.playAgain}
         />
         </section>
       )
