@@ -9,19 +9,8 @@ class KeepMeAliveContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      plants: [],
-      selectedPlant: null,
-      selectedPlantId: null,
-      isGameContainerActive: false
+      plants: []
     }
-  }
-
-  resetSelectedPlant = () => {
-    this.setState({selectedPlant: null});
-  }
-
-  setGameStatus = (gameStatus) => {
-    this.setState({isGameContainerActive: gameStatus})
   }
 
   componentDidMount(){
@@ -45,17 +34,7 @@ class KeepMeAliveContainer extends Component {
               />}
             />
 
-          <Route path="/:plantId/game" 
-            render={() => 
-              <GameContainer
-                plant={this.state.selectedPlant}
-                isGameActive={this.state.isGameActive}
-                setGameStatus={this.setGameStatus}
-                setSelectedPlantId={this.setSelectedPlantId}
-                setIsPlantSelected={this.setIsPlantSelected}
-                resetSelectedPlant={this.resetSelectedPlant}
-              />}
-            />
+          <Route path="/:plantId/game" component={GameContainer}/>
 
           <Route path="/:plantId" component={PlantInfo}/>
           </Switch>

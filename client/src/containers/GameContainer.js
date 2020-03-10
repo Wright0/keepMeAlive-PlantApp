@@ -5,11 +5,13 @@ import GamePlantImage from '../components/gameComponents/GamePlantImage.js';
 import Timer from '../components/gameComponents/Timer.js'
 import HealthBar from '../components/gameComponents/HealthBar.js'
 import './GameContainer.css';
+import { useParams, Link } from 'react-router-dom'
 
 class GameContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
+      plant: {},
       playerName: "",
       playerAnswers: {
         wateringFrequency: null,
@@ -20,6 +22,13 @@ class GameContainer extends Component{
       playerScore: 4,
       isQuizFormActive:true
     }
+  }
+
+  componentDidMount(){
+    fetch(`http://localhost:8080/plants/${this.props.match.params.plantId}`)
+    .then(response => response.json())
+    .then(plantObject => this.setState({plant: plantObject}))
+    .catch(err => console.error)
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -69,7 +78,7 @@ class GameContainer extends Component{
   calculateGameScore = () => {
     let score = this.state.playerScore
     if (this.state.playerAnswers.wateringFrequency  ){
-      if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
+      if (this.state.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
         score += 1
       } else {
         score -= 1
@@ -79,7 +88,7 @@ class GameContainer extends Component{
       this.setState({playerAnswers: newAnswers})
     }
     if (this.state.playerAnswers.fertilisationFrequency ) {
-      if (this.props.plant.fertilisationFrequency === this.state.playerAnswers.fertilisationFrequency ){
+      if (this.state.plant.fertilisationFrequency === this.state.playerAnswers.fertilisationFrequency ){
         score +=1
       } else {
         score -= 1
@@ -89,7 +98,7 @@ class GameContainer extends Component{
       this.setState({playerAnswers: newAnswers})
     }
     if( this.state.playerAnswers.lightRequirement ) {
-      if (this.props.plant.lightRequirement === this.state.playerAnswers.lightRequirement ){
+      if (this.state.plant.lightRequirement === this.state.playerAnswers.lightRequirement ){
         score +=1
       } else {
         score -= 1
@@ -99,8 +108,8 @@ class GameContainer extends Component{
       this.setState({playerAnswers: newAnswers})
     }
     if ( this.state.playerAnswers.temperature) {
-      if (this.state.playerAnswers.temperature >= this.props.plant.minTemperature &&
-        this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
+      if (this.state.playerAnswers.temperature >= this.state.plant.minTemperature &&
+        this.state.playerAnswers.temperature <= this.state.plant.maxTemperature ){
           score +=1
         } else { score -= 1 }
         const answer = {temperature: null}
@@ -114,27 +123,24 @@ class GameContainer extends Component{
       this.setState({ isQuizFormActive: gameStatus });
     }
 
-    playAgain = () => {
+    resetPlayerAnswers = () => {
       const defaultPlayerAnswers = {
         wateringFrequency: null,
         fertilisationFrequency: null,
         lightRequirement: null,
         temperature: null
       }
-      this.setState({playerAnswers: defaultPlayerAnswers}, () => this.setGameInputStatus(true))
+      this.setState({playerAnswers: defaultPlayerAnswers})
       this.setState({playerScore: 4})
     }
 
-    resetPage = () => {
-      this.props.setGameStatus(false);
-      this.setGameInputStatus(true);
-      this.props.resetSelectedPlant(null);
-      this.props.setSelectedPlantId(null);
-      this.props.setIsPlantSelected(false);
+    playAgain = () => {
+      this.resetPlayerAnswers()
+      this.setGameInputStatus(true)
     }
 
     render(){
-      if (!this.props.isGameContainerActive) return null;
+      // if (!this.props.isGameContainerActive) return null;
       let quizForm = null
       if (this.state.isQuizFormActive) {
         quizForm = <QuizForm
@@ -150,7 +156,7 @@ class GameContainer extends Component{
         <h2>Let's play:</h2>
         <Timer/>
         <GamePlantImage/>
-        <h3>{this.props.plant.commonName}</h3>
+        <h3>{this.state.plant.commonName}</h3>
 
         <HealthBar score={this.state.playerScore}/>
 
@@ -159,7 +165,7 @@ class GameContainer extends Component{
         <GameResult
         playerScore={this.state.playerScore}
         isQuizFormActive={this.state.isQuizFormActive}
-        resetPage = {this.resetPage}
+        resetPlayerAnswers={this.resetPlayerAnswers}
         playAgain={this.playAgain}
         />
         </section>
