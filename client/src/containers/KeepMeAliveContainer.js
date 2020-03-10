@@ -11,8 +11,8 @@ class KeepMeAliveContainer extends Component {
     this.state = {
       plants: [],
       selectedPlant: null,
-      selectedPlantId: 1,
-      isGameActive: false,
+      selectedPlantId: null,
+      isGameContainerActive: false,
       isPlantSelected:false
     }
   }
@@ -30,7 +30,7 @@ class KeepMeAliveContainer extends Component {
   }
 
   setGameStatus = (gameStatus) => {
-    this.setState({isGameActive: gameStatus})
+    this.setState({isGameContainerActive: gameStatus})
   }
 
   returnToPickAPlant = () => {

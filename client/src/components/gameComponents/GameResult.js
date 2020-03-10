@@ -1,7 +1,7 @@
 import React from 'react';
 
-const GameResult = ({playerScore, isGameInInputStage, playAgain, resetPage}) => {
-  if (isGameInInputStage) return null;
+const GameResult = ({playerScore, isQuizFormActive, playAgain, resetPage}) => {
+  if (isQuizFormActive) return null;
 
   return (
     <section>

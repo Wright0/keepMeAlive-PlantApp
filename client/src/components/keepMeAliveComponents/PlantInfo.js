@@ -24,14 +24,14 @@ const PlantInfo = (props) => {
 
       <section className="plant-facts">
         <dl id="plant-scientific-name">
-          <dt>scientific name: </dt> 
+          <dt>scientific name: </dt>
           <dd>{plant.scientificName}</dd>
         </dl>
 
         <p>{plant.description}</p>
       </section>
 
-      <figure>  
+      <figure>
         <img
             src={aloeVeraMedium}
             id="medium-aloe"
@@ -51,7 +51,7 @@ const PlantInfo = (props) => {
 
             <dt>Light requirements: </dt>
             <dd>This plant prefers {plant.lightRequirement} light.</dd>
-          
+
             <dt>Temperature requirements: </dt>
             <dd>This plant thrives in temperatures between {plant.minTemperature}°C and {plant.maxTemperature}°C.</dd>
         </dl>
