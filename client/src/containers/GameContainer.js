@@ -18,7 +18,7 @@ class GameContainer extends Component{
         temperature: null
       },
       playerScore: 4,
-      isGameInInputStage:true
+      isQuizFormActive:true
     }
   }
 
@@ -26,31 +26,25 @@ class GameContainer extends Component{
     if(prevState.playerAnswers !== this.state.playerAnswers){
       const score = this.calculateGameScore()
       this.setState({playerScore: score})
-
       // this.saveGameDataToDb()
-
-      // if(this.state.playerAnswers.wateringFrequency && this.state.playerAnswers.fertilisationFrequency && this.state.playerAnswers.lightRequirement && this.state.playerAnswers.temperature){
-      //   this.setGameInputStatus(false)
-      // }
     }
   }
 
-watchAndSetGameStatus = (array) => {
-  let truthCount = 0
-  array.forEach(item => {
-    if (item === true) {
-      truthCount += 1
+  watchAndSetGameStatus = (arrayOfTruthSources) => {
+    let truthCount = 0
+    arrayOfTruthSources.forEach(item => {
+      if (item === false) {
+        truthCount += 1
+      }
+    })
+    if (truthCount === 4) {
+      this.setGameInputStatus(false)
     }
-  })
-  if (truthCount === 4) {
-    this.setGameInputStatus(false)
   }
-}
 
   addAnswer = (answer) => {
     const newAnswers = {...this.state.playerAnswers, ...answer}
     this.setState({playerAnswers: newAnswers})
-
   }
 
   saveGameDataToDb = () => {
@@ -95,8 +89,6 @@ watchAndSetGameStatus = (array) => {
       this.setState({playerAnswers: newAnswers})
     }
     if( this.state.playerAnswers.lightRequirement ) {
-      console.log('lightRequirementChecked')
-
       if (this.props.plant.lightRequirement === this.state.playerAnswers.lightRequirement ){
         score +=1
       } else {
@@ -107,8 +99,6 @@ watchAndSetGameStatus = (array) => {
       this.setState({playerAnswers: newAnswers})
     }
     if ( this.state.playerAnswers.temperature) {
-      console.log('temperatureChecked')
-
       if (this.state.playerAnswers.temperature >= this.props.plant.minTemperature &&
         this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
           score +=1
@@ -121,30 +111,29 @@ watchAndSetGameStatus = (array) => {
     }
 
     setGameInputStatus = (gameStatus) => {
-      this.setState({ isGameInInputStage: gameStatus });
+      this.setState({ isQuizFormActive: gameStatus });
     }
 
-  playAgain = () => {
-    const defaultPlayerAnswers = {
-      wateringFrequency: null,
-      fertilisationFrequency: null,
-      lightRequirement: null,
-      temperature: null
+    playAgain = () => {
+      const defaultPlayerAnswers = {
+        wateringFrequency: null,
+        fertilisationFrequency: null,
+        lightRequirement: null,
+        temperature: null
+      }
+      this.setState({playerAnswers: defaultPlayerAnswers}, () => this.setGameInputStatus(true))
     }
-    this.setState({playerAnswers: defaultPlayerAnswers}, () => this.setGameInputStatus(true))
-  }
 
-  resetPage = () => {
-    this.props.setGameStatus(false);
-    this.setGameInputStatus(true);
-    this.props.resetSelectedPlant(null);
-    this.props.setSelectedPlantId(null);
-    this.props.setIsPlantSelected(false);
-  }
+    resetPage = () => {
+      this.props.setGameStatus(false);
+      this.setGameInputStatus(true);
+      this.props.resetSelectedPlant(null);
+      this.props.setSelectedPlantId(null);
+      this.props.setIsPlantSelected(false);
+    }
 
     render(){
-      if (!this.props.isGameActive) return null;
-
+      if (!this.props.isGameContainerActive) return null;
       return (
         <section className="game">
         <h2>Let's play:</h2>
@@ -155,19 +144,18 @@ watchAndSetGameStatus = (array) => {
         <HealthBar score={this.state.playerScore}/>
 
         <QuizForm
-        onAnswersSubmit={this.addAnswer}
-        isGameInInputStage={this.state.isGameInInputStage}
-        setGameInputStatus = {this.setGameInputStatus}
+        isQuizFormActive={this.state.isQuizFormActive}
         defaultGameAnswers = {this.state.playerAnswers}
-        setGameInputStatus = {this.state.setGameInputStatus}
+        onAnswersSubmit={this.addAnswer}
+        setGameInputStatus = {this.setGameInputStatus}
         watchAndSetGameStatus = {this.watchAndSetGameStatus}
         />
 
         <GameResult
-          playerScore={this.state.playerScore}
-          isGameInInputStage={this.state.isGameInInputStage}
-          resetPage = {this.resetPage}
-          playAgain={this.playAgain}
+        playerScore={this.state.playerScore}
+        isQuizFormActive={this.state.isQuizFormActive}
+        resetPage = {this.resetPage}
+        playAgain={this.playAgain}
         />
         </section>
       )

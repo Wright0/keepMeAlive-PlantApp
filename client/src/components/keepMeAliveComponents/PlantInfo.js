@@ -2,8 +2,8 @@ import React from 'react';
 import aloeVeraMedium from '../../assets/aloevera2.png';
 import './PlantInfo.css'
 
-const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => {
-  if (!plant || isGameActive) return null;
+const PlantInfo = ({plant, isGameContainerActive, setGameStatus, returnToPickAPlant}) => {
+  if (!plant || isGameContainerActive) return null;
 
   return (
     <article className="plant-info">
@@ -12,14 +12,14 @@ const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => 
 
       <section className="plant-facts">
         <dl id="plant-scientific-name">
-          <dt>scientific name: </dt> 
+          <dt>scientific name: </dt>
           <dd>{plant.scientificName}</dd>
         </dl>
 
         <p>{plant.description}</p>
       </section>
 
-      <figure>  
+      <figure>
         <img
             src={aloeVeraMedium}
             id="medium-aloe"
@@ -27,7 +27,7 @@ const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => 
           />
         <figcaption>Keep me alive!</figcaption>
       </figure>
-      
+
       <section className="plant-care-instructions">
         <h2>Care instructions:</h2>
         <dl>
@@ -39,7 +39,7 @@ const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => 
 
             <dt>Light requirements: </dt>
             <dd>This plant prefers {plant.lightRequirement} light.</dd>
-          
+
             <dt>Temperature requirements: </dt>
             <dd>This plant thrives in temperatures between {plant.minTemperature}°C and {plant.maxTemperature}°C.</dd>
         </dl>

@@ -10,7 +10,6 @@ class QuizForm extends Component  {
       fertilisationFrequency: null,
       lightRequirement: null,
       temperature: null,
-      playerNameButtonActive: true,
       wateringFrequencyButtonActive: true,
       fertilisationFrequencyButtonActive: true,
       lightRequirementButtonActive: true,
@@ -20,21 +19,17 @@ class QuizForm extends Component  {
 
   handleScoreSubmit = ( propertyName) => {
     const currentButtonName = `${propertyName}ButtonActive`
-    this.setState({[currentButtonName]: false})
-
-    const newPropertyValue = this.state[propertyName]
-    const answersKeysArray = Object.keys(this.state)
-    answersKeysArray.forEach(key => {
-      if (key === propertyName){
-        this.props.onAnswersSubmit({[propertyName]: newPropertyValue})
-      }
+    this.setState({[currentButtonName]: false}, () => {
+      const newPropertyValue = this.state[propertyName]
+      const answersKeysArray = Object.keys(this.state)
+      answersKeysArray.forEach(key => {
+        if (key === propertyName){
+          this.props.onAnswersSubmit({[propertyName]: newPropertyValue})
+        }
+      })
+      const arrayOfButtonTruth = [ this.state.wateringFrequencyButtonActive, this.state.fertilisationFrequencyButtonActive, this.state.lightRequirementButtonActive, this.state.temperatureButtonActive]
+      this.props.watchAndSetGameStatus(arrayOfButtonTruth)
     })
-
-    const arrayOfButtonTruth = [this.state.playerNameButtonActive, this.state.wateringFrequencyButtonActive, this.state.fertilisationFrequencyButtonActive, this.state.lightRequirementButtonActive, this.state.temperatureButtonActive]
-    this.props.watchAndSetGameStatus(arrayOfButtonTruth)
-
-
-
     // this.props.setGameInputStatus(false)
   }
 
@@ -64,7 +59,7 @@ class QuizForm extends Component  {
     this.setState({temperature: newValue})
   }
   render(){
-    if (!this.props.isGameInInputStage) return null;
+    if (!this.props.isQuizFormActive) return null;
 
     return (
 
