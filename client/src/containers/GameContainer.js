@@ -66,6 +66,10 @@ class GameContainer extends Component{
     })
   }
 
+  reduceScoreByTimer = () => {
+    this.setState({playerScore: this.state.playerScore -1})
+  }
+
   calculateGameScore = () => {
     let score = this.state.playerScore
     if (this.state.playerAnswers.wateringFrequency  ){
@@ -145,7 +149,7 @@ class GameContainer extends Component{
         setGameInputStatus = {this.setGameInputStatus}
         watchAndSetGameStatus = {this.watchAndSetGameStatus}
         />
-        timer = <Timer setGameInputStatus={this.setGameInputStatus}/>
+        timer = <Timer reduceScoreByTimer={this.reduceScoreByTimer} setGameInputStatus={this.setGameInputStatus}/>
       }
 
       return (

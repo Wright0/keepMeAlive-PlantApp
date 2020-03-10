@@ -18,6 +18,7 @@ class QuizForm extends Component  {
   }
 
   componentDidMount(){
+    
     this.resetSubmitButtons()
   }
 
