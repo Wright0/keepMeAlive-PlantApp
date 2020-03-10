@@ -3,6 +3,7 @@ import GameResult from '../components/gameComponents/GameResult.js';
 import QuizForm from '../components/gameComponents/QuizForm.js';
 import GamePlantImage from '../components/gameComponents/GamePlantImage.js';
 import Timer from '../components/gameComponents/Timer.js'
+import HealthBar from '../components/gameComponents/HealthBar.js'
 import './GameContainer.css';
 
 class GameContainer extends Component{
@@ -96,6 +97,8 @@ class GameContainer extends Component{
         <h2>Let's play:</h2>
         <Timer/>
         <GamePlantImage/>
+
+        <HealthBar score={this.state.playerScore}/>
 
         <QuizForm
           onAnswersSubmit={this.addAnswer}

@@ -4,7 +4,7 @@ section.game {
     align-items: center;
     flex-direction: column;
 
-    border: 3px solid #ECECEC;
+    /* border: 3px solid #ECECEC; */
     /* border-radius: 20px; */
     padding: 25px;
     max-width: 500px;
@@ -14,3 +14,4 @@ section.game {
 /* section.game > h2 {
     flex:
 } */
+
