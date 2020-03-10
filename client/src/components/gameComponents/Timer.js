@@ -15,6 +15,15 @@ export default class Timer extends Component {
       if (this.state.seconds === 45 ){
         this.props.reduceScoreByTimer()
       }
+      if (this.state.seconds === 30 ){
+        this.props.reduceScoreByTimer()
+      }
+      if (this.state.seconds === 15 ){
+        this.props.reduceScoreByTimer()
+      }
+      // if (this.state.seconds === 0 ){
+      //   this.props.reduceScoreByTimer()
+      // }
     }
   }
 

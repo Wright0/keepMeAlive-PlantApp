@@ -25,7 +25,12 @@ class GameContainer extends Component{
   componentDidUpdate(prevProps, prevState){
     if(prevState.playerAnswers !== this.state.playerAnswers){
       const score = this.calculateGameScore()
-      this.setState({playerScore: score})
+      if (this.state.playerScore > 0) {
+        this.setState({playerScore: score})
+      }
+      if (this.state.playerScore < 0) {
+        this.setState({playerScore: 0})
+      }
       // this.saveGameDataToDb()
     }
   }
@@ -67,12 +72,17 @@ class GameContainer extends Component{
   }
 
   reduceScoreByTimer = () => {
-    this.setState({playerScore: this.state.playerScore -1})
+    if (this.state.playerScore > 0) {
+      this.setState({playerScore: this.state.playerScore -1})
+    }
+    if (this.state.playerScore < 0){
+      this.setState({playerScore: 0})
+    }
   }
 
   calculateGameScore = () => {
     let score = this.state.playerScore
-    if (this.state.playerAnswers.wateringFrequency  ){
+    if (this.state.playerAnswers.wateringFrequency ){
       if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
         score += 1
       } else {
