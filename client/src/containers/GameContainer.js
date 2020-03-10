@@ -28,8 +28,10 @@ class GameContainer extends Component{
       if (this.state.playerScore > 0) {
         this.setState({playerScore: score})
       }
-      if (this.state.playerScore < 0) {
-        this.setState({playerScore: 0})
+      if (this.state.playerScore <= 0) {
+        this.setState({playerScore: 0}, () => {
+          this.setGameInputStatus(false)
+        })
       }
       // this.saveGameDataToDb()
     }
@@ -75,14 +77,16 @@ class GameContainer extends Component{
     if (this.state.playerScore > 0) {
       this.setState({playerScore: this.state.playerScore -1})
     }
-    if (this.state.playerScore < 0){
-      this.setState({playerScore: 0})
+    if (this.state.playerScore <= 0){
+      this.setState({playerScore: 0}, () => {
+        this.setGameInputStatus(false)
+      })
     }
   }
 
   calculateGameScore = () => {
     let score = this.state.playerScore
-    if (this.state.playerAnswers.wateringFrequency ){
+    if (this.state.playerAnswers.wateringFrequency !== null ){
       if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
         score += 1
       } else {
@@ -92,7 +96,7 @@ class GameContainer extends Component{
       const newAnswers = { ... this.state.playerAnswers, ...answer}
       this.setState({playerAnswers: newAnswers})
     }
-    if (this.state.playerAnswers.fertilisationFrequency ) {
+    if (this.state.playerAnswers.fertilisationFrequency !== null ) {
       if (this.props.plant.fertilisationFrequency === this.state.playerAnswers.fertilisationFrequency ){
         score +=1
       } else {
@@ -102,7 +106,7 @@ class GameContainer extends Component{
       const newAnswers = { ... this.state.playerAnswers, ...answer}
       this.setState({playerAnswers: newAnswers})
     }
-    if( this.state.playerAnswers.lightRequirement ) {
+    if( this.state.playerAnswers.lightRequirement !== null) {
       if (this.props.plant.lightRequirement === this.state.playerAnswers.lightRequirement ){
         score +=1
       } else {
@@ -112,7 +116,7 @@ class GameContainer extends Component{
       const newAnswers = { ... this.state.playerAnswers, ...answer}
       this.setState({playerAnswers: newAnswers})
     }
-    if ( this.state.playerAnswers.temperature) {
+    if ( this.state.playerAnswers.temperature !== null) {
       if (this.state.playerAnswers.temperature >= this.props.plant.minTemperature &&
         this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
           score +=1
@@ -159,7 +163,7 @@ class GameContainer extends Component{
         setGameInputStatus = {this.setGameInputStatus}
         watchAndSetGameStatus = {this.watchAndSetGameStatus}
         />
-        timer = <Timer reduceScoreByTimer={this.reduceScoreByTimer} setGameInputStatus={this.setGameInputStatus}/>
+        timer = <Timer score={this.state.playerScore} reduceScoreByTimer={this.reduceScoreByTimer} setGameInputStatus={this.setGameInputStatus}/>
       }
 
       return (
