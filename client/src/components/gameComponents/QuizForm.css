@@ -21,6 +21,10 @@ article.plant-quiz > div {
     color: #045206;
 }
 
+article.plant-quiz > div > p {
+    margin: 5px 7px;
+}
+
 article.plant-quiz > div > label {
     margin: 5px 7px;
 }
