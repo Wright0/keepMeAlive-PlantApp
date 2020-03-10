@@ -1,6 +1,7 @@
 import React from 'react';
 import aloeVeraMedium from '../../assets/aloevera2.png';
 import './SelectPlant.css';
+import { Link } from 'react-router-dom';
 
 const SelectPlant = ({plants, setSelectedPlantId, isPlantSelected, setIsPlantSelected}) => {
 if (isPlantSelected) return null;
@@ -12,18 +13,19 @@ if (isPlantSelected) return null;
 
   const plantItems = plants.map(plant => {
     return (
-    <li 
-      key={plant.id}
-      value={plant.id}
-      onClick={ handleSelectedPlant }
-    >
-      <img
-        src={aloeVeraMedium}
-        className="aloe-vera"
-        alt="Aloe vera plant"
-      />
-      <p>{ plant.commonName }</p>
-    </li>
+    <Link to={`/${plant.id}`} key={plant.id}>
+      <li 
+        value={plant.id}
+        onClick={ handleSelectedPlant }
+      >
+        <img
+          src={aloeVeraMedium}
+          className="aloe-vera"
+          alt="Aloe vera plant"
+        />
+        <p>{ plant.commonName }</p>
+      </li>
+    </Link>
     )
   })
 

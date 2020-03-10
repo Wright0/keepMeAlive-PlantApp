@@ -9,8 +9,6 @@ const PlantInfo = (props) => {
 
   let { plantId } = useParams()
 
-  console.log(plantId);
-
   const getPlant = () => {
     fetch(`http://localhost:8080/plants/${plantId}`)
       .then(response => response.json())
