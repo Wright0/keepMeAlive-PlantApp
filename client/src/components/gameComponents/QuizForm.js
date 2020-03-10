@@ -17,6 +17,11 @@ class QuizForm extends Component  {
     }
   }
 
+  componentDidMount(){
+    this.resetSubmitButtons()
+  }
+
+
   handleScoreSubmit = ( propertyName) => {
     const currentButtonName = `${propertyName}ButtonActive`
     this.setState({[currentButtonName]: false}, () => {
@@ -31,6 +36,13 @@ class QuizForm extends Component  {
       this.props.watchAndSetGameStatus(arrayOfButtonTruth)
     })
     // this.props.setGameInputStatus(false)
+  }
+
+  resetSubmitButtons = () => {
+    this.setState({wateringFrequencyButtonActive: true})
+    this.setState({fertilisationFrequencyButtonActive: true})
+    this.setState({lightRequirementButtonActive: true})
+    this.setState({temperatureButtonActive: true})
   }
 
   renderAnswerSubmitButton = (propertyName) => {
@@ -59,6 +71,7 @@ class QuizForm extends Component  {
     this.setState({temperature: newValue})
   }
   render(){
+
     if (!this.props.isQuizFormActive) return null;
 
     return (

@@ -134,6 +134,16 @@ class GameContainer extends Component{
 
     render(){
       if (!this.props.isGameContainerActive) return null;
+      let quizForm = null
+      if (this.state.isQuizFormActive) {
+        quizForm = <QuizForm
+        isQuizFormActive={this.state.isQuizFormActive}
+        defaultGameAnswers = {this.state.playerAnswers}
+        onAnswersSubmit={this.addAnswer}
+        setGameInputStatus = {this.setGameInputStatus}
+        watchAndSetGameStatus = {this.watchAndSetGameStatus}
+        />
+      }
       return (
         <section className="game">
         <h2>Let's play:</h2>
@@ -143,13 +153,7 @@ class GameContainer extends Component{
 
         <HealthBar score={this.state.playerScore}/>
 
-        <QuizForm
-        isQuizFormActive={this.state.isQuizFormActive}
-        defaultGameAnswers = {this.state.playerAnswers}
-        onAnswersSubmit={this.addAnswer}
-        setGameInputStatus = {this.setGameInputStatus}
-        watchAndSetGameStatus = {this.watchAndSetGameStatus}
-        />
+        {quizForm}
 
         <GameResult
         playerScore={this.state.playerScore}
