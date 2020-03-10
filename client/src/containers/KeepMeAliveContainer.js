@@ -1,11 +1,5 @@
-import React, { 
-  Component,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SelectPlant from '../components/keepMeAliveComponents/SelectPlant.js';
 import PlantInfo from '../components/keepMeAliveComponents/PlantInfo.js';
 import GameContainer from './GameContainer.js';
@@ -17,7 +11,7 @@ class KeepMeAliveContainer extends Component {
     this.state = {
       plants: [],
       selectedPlant: null,
-      selectedPlantId: null,
+      selectedPlantId: 1,
       isGameActive: false,
       isPlantSelected:false
     }
@@ -53,45 +47,73 @@ class KeepMeAliveContainer extends Component {
       .catch(err => console.error)
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if (prevState.selectedPlantId !== this.state.selectedPlantId && this.state.selectedPlantId !== null) {
-      fetch(`http://localhost:8080/plants/${this.state.selectedPlantId}`)
-        .then(response => response.json())
-        .then(plantObject => this.setState({selectedPlant: plantObject}))
-        .catch(err => console.error)
-    }
-  }
+  // componentDidUpdate(prevProps, prevState){
+  //   if (prevState.selectedPlantId !== this.state.selectedPlantId && this.state.selectedPlantId !== null) {
+  //     fetch(`http://localhost:8080/plants/${this.state.selectedPlantId}`)
+  //       .then(response => response.json())
+  //       .then(plantObject => this.setState({selectedPlant: plantObject}))
+  //       .catch(err => console.error)
+  //   }
+  // }
 
   render(){
     return (
       <>
         <SiteHeader/>
 
-        <SelectPlant
-          plants={this.state.plants}
-          setSelectedPlantId={this.setSelectedPlantId}
-          isPlantSelected={this.state.isPlantSelected}
-          setIsPlantSelected={this.setIsPlantSelected}
-        />
+        <Router>
+          <Switch>
+            <Route exact path="/" 
+            render={() => 
+              <SelectPlant
+              plants={this.state.plants}
+              setSelectedPlantId={this.setSelectedPlantId}
+              isPlantSelected={this.state.isPlantSelected}
+              setIsPlantSelected={this.setIsPlantSelected}
+              />}
+            />
 
-        <PlantInfo
-          plant={this.state.selectedPlant}
-          isGameActive={this.state.isGameActive}
-          setGameStatus={this.setGameStatus}
-          returnToPickAPlant={this.returnToPickAPlant}
-        />
+          <Route path="/:plantId/game" 
+            render={() => 
+              <GameContainer
+                plant={this.state.selectedPlant}
+                isGameActive={this.state.isGameActive}
+                setGameStatus={this.setGameStatus}
+                setSelectedPlantId={this.setSelectedPlantId}
+                setIsPlantSelected={this.setIsPlantSelected}
+                resetSelectedPlant={this.resetSelectedPlant}
+              />}
+            />
 
-        <GameContainer
-          plant={this.state.selectedPlant}
-          isGameActive={this.state.isGameActive}
-          setGameStatus={this.setGameStatus}
-          setSelectedPlantId={this.setSelectedPlantId}
-          setIsPlantSelected={this.setIsPlantSelected}
-          resetSelectedPlant={this.resetSelectedPlant}
-        />
+          <Route path="/:plantId" 
+            component={PlantInfo}
+            />
+          </Switch>
+        </Router>
+
       </>
     )
   }
 }
 
 export default KeepMeAliveContainer;
+
+
+
+{/* <SelectPlant
+plants={this.state.plants}
+setSelectedPlantId={this.setSelectedPlantId}
+isPlantSelected={this.state.isPlantSelected}
+setIsPlantSelected={this.setIsPlantSelected}
+/>
+
+
+
+<GameContainer
+plant={this.state.selectedPlant}
+isGameActive={this.state.isGameActive}
+setGameStatus={this.setGameStatus}
+setSelectedPlantId={this.setSelectedPlantId}
+setIsPlantSelected={this.setIsPlantSelected}
+resetSelectedPlant={this.resetSelectedPlant}
+/> */}

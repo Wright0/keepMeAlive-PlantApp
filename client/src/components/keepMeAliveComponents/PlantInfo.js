@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import aloeVeraMedium from '../../assets/aloevera2.png';
 import './PlantInfo.css'
 
-const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => {
-  if (!plant || isGameActive) return null;
+const PlantInfo = (props) => {
+  
+  const [plant, setPlant] = useState({});
 
+  const getPlant = () => {
+    fetch(`http://localhost:8080/plants/${props.match.url}`)
+      .then(response => response.json())
+      .then(plantObject => setPlant(plantObject))
+      .catch(err => console.error)
+  }
+
+  useEffect( () => {
+    getPlant();
+  }, [])
+  
   return (
     <article className="plant-info">
 
@@ -27,7 +39,7 @@ const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => 
           />
         <figcaption>Keep me alive!</figcaption>
       </figure>
-      
+
       <section className="plant-care-instructions">
         <h2>Care instructions:</h2>
         <dl>
@@ -46,9 +58,10 @@ const PlantInfo = ({plant, isGameActive, setGameStatus, returnToPickAPlant}) => 
       </section>
 
       <div id="plant-info-buttons">
-        <button className="navigate" onClick={() => {setGameStatus(true)}}>PLAY</button>
-        <button className="navigate" onClick={returnToPickAPlant}>PICK A DIFFERENT PLANT</button>
+        <button className="navigate" onClick={() => {props.setGameStatus(true)}}>PLAY</button>
+        <button className="navigate" onClick={props.returnToPickAPlant}>PICK A DIFFERENT PLANT</button>
       </div>
+
     </article>
   )
 }
