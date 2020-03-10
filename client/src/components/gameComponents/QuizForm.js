@@ -9,11 +9,18 @@ class QuizForm extends Component  {
       wateringFrequency: null,
       fertilisationFrequency: null,
       lightRequirement: null,
-      temperature: null
+      temperature: null,
+      playerNameButtonActive: true,
+      wateringFrequencyButtonActive: true,
+      fertilisationFrequencyButtonActive: true,
+      lightRequirementButtonActive: true,
+      temperatureButtonActive: true
     }
   }
 
   handleScoreSubmit = ( propertyName) => {
+    const currentButtonName = `${propertyName}ButtonActive`
+    this.setState({[currentButtonName]: false})
     const newPropertyValue = this.state[propertyName]
     const answersKeysArray = Object.keys(this.state)
     answersKeysArray.forEach(key => {
@@ -22,11 +29,14 @@ class QuizForm extends Component  {
       }
     })
 
+
+
     // this.props.setGameInputStatus(false)
   }
 
   renderAnswerSubmitButton = (propertyName) => {
-    if(this.props.defaultGameAnswers[propertyName] === null){
+const currentButtonName = `${propertyName}ButtonActive`
+    if(this.state[currentButtonName] === true){
       return <button onClick={() => {this.handleScoreSubmit( propertyName)}}>Submit</button>
     }
   }
@@ -66,14 +76,14 @@ class QuizForm extends Component  {
           <input onChange={this.handleWateringFrequencyChange} value={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
           {this.renderAnswerSubmitButton("wateringFrequency")}
         </div>
-        
+
         <div id="quiz-fertilisation">
           <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
           <p>{this.state.fertilisationFrequency}</p>
           <input onChange={this.handleFertilisationFrequencyChange} value={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
           {this.renderAnswerSubmitButton("fertilisationFrequency")}
         </div>
-        
+
         <div id="quiz-light">
           <label htmlFor="light" >Light Requirement:</label>
           <p>{this.state.lightRequirement}</p>
@@ -84,7 +94,7 @@ class QuizForm extends Component  {
           </select>
           {this.renderAnswerSubmitButton("lightRequirement")}
         </div>
-        
+
 
         <div id="quiz-temperature">
           <label htmlFor="temperature" >Temperature:</label>
@@ -93,7 +103,7 @@ class QuizForm extends Component  {
           {this.renderAnswerSubmitButton("temperature")}
         </div>
 
-        </article>   
+        </article>
       )
   }
 
