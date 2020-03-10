@@ -25,16 +25,27 @@ class GameContainer extends Component{
   componentDidUpdate(prevProps, prevState){
     if(prevState.playerAnswers !== this.state.playerAnswers){
       const score = this.calculateGameScore()
-      console.log("calculted score", score);
       this.setState({playerScore: score})
-      console.log("state score:", this.state.playerScore);
+
       // this.saveGameDataToDb()
 
-      if(this.state.playerAnswers.wateringFrequency && this.state.playerAnswers.fertilisationFrequency && this.state.playerAnswers.lightRequirement && this.state.playerAnswers.temperature){
-        this.setGameInputStatus(false)
-      }
+      // if(this.state.playerAnswers.wateringFrequency && this.state.playerAnswers.fertilisationFrequency && this.state.playerAnswers.lightRequirement && this.state.playerAnswers.temperature){
+      //   this.setGameInputStatus(false)
+      // }
     }
   }
+
+watchAndSetGameStatus = (array) => {
+  let truthCount = 0
+  array.forEach(item => {
+    if (item === true) {
+      truthCount += 1
+    }
+  })
+  if (truthCount === 4) {
+    this.setGameInputStatus(false)
+  }
+}
 
   addAnswer = (answer) => {
     const newAnswers = {...this.state.playerAnswers, ...answer}
@@ -149,6 +160,7 @@ class GameContainer extends Component{
         setGameInputStatus = {this.setGameInputStatus}
         defaultGameAnswers = {this.state.playerAnswers}
         setGameInputStatus = {this.state.setGameInputStatus}
+        watchAndSetGameStatus = {this.watchAndSetGameStatus}
         />
 
         <GameResult
