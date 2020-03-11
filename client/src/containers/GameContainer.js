@@ -25,7 +25,14 @@ class GameContainer extends Component{
   componentDidUpdate(prevProps, prevState){
     if(prevState.playerAnswers !== this.state.playerAnswers){
       const score = this.calculateGameScore()
-      this.setState({playerScore: score})
+      if (this.state.playerScore > 0) {
+        this.setState({playerScore: score})
+      }
+      if (this.state.playerScore <= 0) {
+        this.setState({playerScore: 0}, () => {
+          this.setGameInputStatus(false)
+        })
+      }
       // this.saveGameDataToDb()
     }
   }
@@ -66,9 +73,20 @@ class GameContainer extends Component{
     })
   }
 
+  reduceScoreByTimer = () => {
+    if (this.state.playerScore > 0) {
+      this.setState({playerScore: this.state.playerScore -1})
+    }
+    if (this.state.playerScore <= 0){
+      this.setState({playerScore: 0}, () => {
+        this.setGameInputStatus(false)
+      })
+    }
+  }
+
   calculateGameScore = () => {
     let score = this.state.playerScore
-    if (this.state.playerAnswers.wateringFrequency  ){
+    if (this.state.playerAnswers.wateringFrequency !== null ){
       if (this.props.plant.wateringFrequency === this.state.playerAnswers.wateringFrequency) {
         score += 1
       } else {
@@ -78,7 +96,7 @@ class GameContainer extends Component{
       const newAnswers = { ... this.state.playerAnswers, ...answer}
       this.setState({playerAnswers: newAnswers})
     }
-    if (this.state.playerAnswers.fertilisationFrequency ) {
+    if (this.state.playerAnswers.fertilisationFrequency !== null ) {
       if (this.props.plant.fertilisationFrequency === this.state.playerAnswers.fertilisationFrequency ){
         score +=1
       } else {
@@ -88,7 +106,7 @@ class GameContainer extends Component{
       const newAnswers = { ... this.state.playerAnswers, ...answer}
       this.setState({playerAnswers: newAnswers})
     }
-    if( this.state.playerAnswers.lightRequirement ) {
+    if( this.state.playerAnswers.lightRequirement !== null) {
       if (this.props.plant.lightRequirement === this.state.playerAnswers.lightRequirement ){
         score +=1
       } else {
@@ -98,7 +116,7 @@ class GameContainer extends Component{
       const newAnswers = { ... this.state.playerAnswers, ...answer}
       this.setState({playerAnswers: newAnswers})
     }
-    if ( this.state.playerAnswers.temperature) {
+    if ( this.state.playerAnswers.temperature !== null) {
       if (this.state.playerAnswers.temperature >= this.props.plant.minTemperature &&
         this.state.playerAnswers.temperature <= this.props.plant.maxTemperature ){
           score +=1
@@ -136,6 +154,7 @@ class GameContainer extends Component{
     render(){
       if (!this.props.isGameContainerActive) return null;
       let quizForm = null
+      let timer = null
       if (this.state.isQuizFormActive) {
         quizForm = <QuizForm
         isQuizFormActive={this.state.isQuizFormActive}
@@ -144,14 +163,15 @@ class GameContainer extends Component{
         setGameInputStatus = {this.setGameInputStatus}
         watchAndSetGameStatus = {this.watchAndSetGameStatus}
         />
+        timer = <Timer score={this.state.playerScore} reduceScoreByTimer={this.reduceScoreByTimer} setGameInputStatus={this.setGameInputStatus}/>
       }
+
       return (
         <section className="game">
         <h2>Let's play:</h2>
-        <Timer/>
         <GamePlantImage/>
         <h3>{this.props.plant.commonName}</h3>
-
+        {timer}
         <HealthBar score={this.state.playerScore}/>
 
         {quizForm}

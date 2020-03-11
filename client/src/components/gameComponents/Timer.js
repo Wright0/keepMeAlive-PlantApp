@@ -8,7 +8,26 @@ export default class Timer extends Component {
     this.state = {
       seconds: 60
     }
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.seconds !== this.state.seconds) {
+      if (this.props.score === 0) {
+        this.props.reduceScoreByTimer()
+      }
+      if (this.state.seconds === 45 ){
+        this.props.reduceScoreByTimer()
+      }
+      if (this.state.seconds === 30 ){
+        this.props.reduceScoreByTimer()
+      }
+      if (this.state.seconds === 15 ){
+        this.props.reduceScoreByTimer()
+      }
+      // if (this.state.seconds === 0 ){
+      //   this.props.reduceScoreByTimer()
+      // }
+    }
   }
 
   componentDidMount = () => {
@@ -16,13 +35,12 @@ export default class Timer extends Component {
       this.setState(({ seconds }) => ({
         seconds: seconds - 1
       }))
-
       if(this.state.seconds === 0){
         clearInterval(this.myInterval)
+        this.props.setGameInputStatus(false)
       }
-
     }, 1000)
-    
+
   }
 
   componentWillUnmount = () => {

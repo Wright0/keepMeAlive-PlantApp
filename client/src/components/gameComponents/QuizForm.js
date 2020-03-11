@@ -21,20 +21,27 @@ class QuizForm extends Component  {
     this.resetSubmitButtons()
   }
 
-
   handleScoreSubmit = ( propertyName) => {
-    const currentButtonName = `${propertyName}ButtonActive`
-    this.setState({[currentButtonName]: false}, () => {
-      const newPropertyValue = this.state[propertyName]
-      const answersKeysArray = Object.keys(this.state)
-      answersKeysArray.forEach(key => {
-        if (key === propertyName){
-          this.props.onAnswersSubmit({[propertyName]: newPropertyValue})
-        }
+    if ((propertyName === "lightRequirement" && this.validateLightInput() === false) ||
+    (propertyName === "wateringFrequency" && this.validateWateringFrequencyInput() === false) ||
+    (propertyName === "fertilisationFrequency" && this.validateFertilisationFrequencyInput() === false) ||
+    (propertyName === "temperature" && this.validateTemperatureInput() ===false) ){
+      return;
+    }
+    else {
+      const currentButtonName = `${propertyName}ButtonActive`
+      this.setState({[currentButtonName]: false}, () => {
+        const newPropertyValue = this.state[propertyName]
+        const answersKeysArray = Object.keys(this.state)
+        answersKeysArray.forEach(key => {
+          if (key === propertyName){
+            this.props.onAnswersSubmit({[propertyName]: newPropertyValue})
+          }
+        })
+        const arrayOfButtonTruth = [ this.state.wateringFrequencyButtonActive, this.state.fertilisationFrequencyButtonActive, this.state.lightRequirementButtonActive, this.state.temperatureButtonActive]
+        this.props.watchAndSetGameStatus(arrayOfButtonTruth)
       })
-      const arrayOfButtonTruth = [ this.state.wateringFrequencyButtonActive, this.state.fertilisationFrequencyButtonActive, this.state.lightRequirementButtonActive, this.state.temperatureButtonActive]
-      this.props.watchAndSetGameStatus(arrayOfButtonTruth)
-    })
+    }
     // this.props.setGameInputStatus(false)
   }
 
@@ -66,10 +73,40 @@ class QuizForm extends Component  {
   handleLightRequirementChange = (event) => {
     this.setState({lightRequirement: event.target.value})
   }
+
   handleTemperatureChange = (event) => {
     const newValue = parseInt(event.target.value)
     this.setState({temperature: newValue})
   }
+
+  validateLightInput = () => {
+    if (this.state.lightRequirement === null) {
+      alert("Light requirement must be selected");
+      return false;
+    }
+  }
+
+  validateWateringFrequencyInput = () => {
+    if (this.state.wateringFrequency === null) {
+      alert("Please drag the slider to select a value before submitting");
+      return false;
+    }
+  }
+
+  validateFertilisationFrequencyInput = () => {
+    if (this.state.fertilisationFrequency === null) {
+      alert("Please drag the slider to select a value before submitting");
+      return false;
+    }
+  }
+
+  validateTemperatureInput = () => {
+    if (this.state.temperature === null) {
+      alert("Please drag the slider to select a value before submitting");
+      return false;
+    }
+  }
+
   render(){
 
     if (!this.props.isQuizFormActive) return null;
@@ -100,13 +137,13 @@ class QuizForm extends Component  {
       <label htmlFor="light" >Light Requirement:</label>
       <p>{this.state.lightRequirement}</p>
       <select value={this.state.lightRequirement } onChange={this.handleLightRequirementChange} id="light" required>
-      <option value="shade" >Shade </option>
+      <option selected disabled > Select... </option>
+      <option value="shade"> Shade </option>
       <option value="indirect" >Indirect </option>
       <option value="direct" >Direct </option>
       </select>
       {this.renderAnswerSubmitButton("lightRequirement")}
       </div>
-
 
       <div id="quiz-temperature">
       <label htmlFor="temperature" >Temperature:</label>
