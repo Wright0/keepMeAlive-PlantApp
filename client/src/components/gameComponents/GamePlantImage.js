@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './GamePlantImage.css';
 import plantHealth0 from '../../assets/0_plantHealth.png';
 import plantHealth1 from '../../assets/1_plantHealth.png';
@@ -42,12 +42,15 @@ const setImage = () => {
       break;
     case 8:
       selectedImage = plantHealth8;
+      break;
+    default:
+      selectedImage = plantHealth4;
   }
   return selectedImage;
 }
 
   return (
-    <img src={setImage()} alt="Plant Health plant" />
+    <img src={setImage()} alt="Plant Health plant" className="game-plant" />
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Timer.css'
 
 export default class Timer extends Component {
 
@@ -56,10 +57,10 @@ export default class Timer extends Component {
 
   render() {
     return (
-      <div>
+      <section className="timer">
         <h3>Time Remaining: {this.state.seconds} seconds</h3>
         {this.timesUpNotification()}
-      </div>
+      </section>
     )
   }
 }

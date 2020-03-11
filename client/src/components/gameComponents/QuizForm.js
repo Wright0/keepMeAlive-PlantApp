@@ -108,7 +108,6 @@ class QuizForm extends Component  {
   }
 
   render(){
-
     if (!this.props.isQuizFormActive) return null;
 
     return (

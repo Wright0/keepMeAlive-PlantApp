@@ -5,7 +5,6 @@ import GamePlantImage from '../components/gameComponents/GamePlantImage.js';
 import Timer from '../components/gameComponents/Timer.js'
 import HealthBar from '../components/gameComponents/HealthBar.js'
 import './GameContainer.css';
-// import { Link } from 'react-router-dom'
 
 class GameContainer extends Component{
   constructor(props){
@@ -174,20 +173,28 @@ class GameContainer extends Component{
 
       return (
         <section className="game">
-        <h2>Let's play:</h2>
-        <GamePlantImage playerScore={this.state.playerScore}/>
-        <h3>{this.state.plant.commonName}</h3>
-        {timer}
-        <HealthBar score={this.state.playerScore}/>
+          
+          <div className="game-header">
+          <h1>{this.state.plant.commonName}</h1>
+            {timer}
+          </div>
 
-        {quizForm}
+          <div className="game-play"> 
+            <div className="plant">
+              <GamePlantImage playerScore={this.state.playerScore}/>
+              <HealthBar score={this.state.playerScore}/>
+            </div>
 
-        <GameResult
-        playerScore={this.state.playerScore}
-        isQuizFormActive={this.state.isQuizFormActive}
-        resetPlayerAnswers={this.resetPlayerAnswers}
-        playAgain={this.playAgain}
-        />
+            {quizForm}
+
+            <GameResult
+              playerScore={this.state.playerScore}
+              isQuizFormActive={this.state.isQuizFormActive}
+              resetPlayerAnswers={this.resetPlayerAnswers}
+              playAgain={this.playAgain}
+            />
+          </div>
+          
         </section>
       )
     }
