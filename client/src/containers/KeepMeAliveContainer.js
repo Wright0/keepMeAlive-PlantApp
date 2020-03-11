@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SelectPlant from '../components/keepMeAliveComponents/SelectPlant.js';
 import PlantInfo from '../components/keepMeAliveComponents/PlantInfo.js';
 import GameContainer from './GameContainer.js';
 import SiteHeader from '../components/keepMeAliveComponents/SiteHeader.js';
-import NewUser from '../components/keepMeAliveComponents/NewUser.js'
+import HomeContainer from './HomeContainer.js'
 
 class KeepMeAliveContainer extends Component {
   constructor(props){
@@ -29,26 +28,15 @@ class KeepMeAliveContainer extends Component {
   }
 
   render(){
-    // localStorage.setItem('playerId', 1)
-    let newUser = null
-    this.state.players.forEach(player => {
-      if (player["id"] !== parseInt(localStorage.getItem('playerId'))) {
-
-        newUser = <NewUser />
-      }
-    })
-
     return (
       <>
         <Router>
         <SiteHeader/>
-        {newUser}
-
           <Switch>
             <Route exact path="/"
-            render={() =>
-              <SelectPlant
-              plants={this.state.plants}
+              render={() =>
+              <HomeContainer
+              plants={this.state.plants} players={this.state.players}
               />}
             />
           <Route path="/:plantId/game" component={GameContainer}/>
