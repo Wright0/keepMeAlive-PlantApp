@@ -176,17 +176,17 @@ class GameContainer extends Component{
         <section className="game">
         <h2>Let's play:</h2>
         <GamePlantImage/>
-        <h3>{this.state.plant.commonName}</h3>
-        {timer}
+          <h3>{this.state.plant.commonName}</h3>
+          {timer}
         <HealthBar score={this.state.playerScore}/>
 
-        {quizForm}
+          {quizForm}
 
         <GameResult
-        playerScore={this.state.playerScore}
-        isQuizFormActive={this.state.isQuizFormActive}
-        resetPlayerAnswers={this.resetPlayerAnswers}
-        playAgain={this.playAgain}
+          playerScore={this.state.playerScore}
+          isQuizFormActive={this.state.isQuizFormActive}
+          resetPlayerAnswers={this.resetPlayerAnswers}
+          playAgain={this.playAgain}
         />
         </section>
       )
