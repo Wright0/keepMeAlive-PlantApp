@@ -24,11 +24,7 @@ const NewUser = ({players}) => {
   }
 
   const setLocalStorageNewUserIdFromDatabase = () => {
-    // players.forEach(player => {
-    //   console.log(player.id)
-    // })
     const foundPlayer = players.find(player => player["name"] === name)
-    // console.log(foundPlayer)
     if (foundPlayer !== undefined) {
       localStorage.setItem('playerId', foundPlayer.id)
     }
