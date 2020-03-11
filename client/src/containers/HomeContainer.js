@@ -7,7 +7,9 @@ class HomeContainer  extends Component  {
     super(props)
   }
 
-  // localStorage.setItem('playerId', 1)
+  componentDidUpdate(prevProps, prevState){
+    this.checkPlayerIdIsInLocalStorage()
+  }
 
   checkPlayerIdIsInLocalStorage = () => {
     const array = []

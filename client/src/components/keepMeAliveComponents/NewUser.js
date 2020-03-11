@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const NewUser = ({players}) => {
   const [name, setName] = useState()
+
+  useEffect( () => { setLocalStorageNewUserIdFromDatabase() }, [players.length] )  
 
   const handleNewUserNameEntry = (event) => {
     event.preventDefault()    
@@ -16,10 +18,20 @@ const NewUser = ({players}) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: name,
-        games: []
+        name: name
       })
     })
+  }
+
+  const setLocalStorageNewUserIdFromDatabase = () => {
+    // players.forEach(player => {
+    //   console.log(player.id)
+    // })
+    const foundPlayer = players.find(player => player["name"] === name)
+    // console.log(foundPlayer)
+    if (foundPlayer !== undefined) {
+      localStorage.setItem('playerId', foundPlayer.id)
+    }
   }
 
   const handleNameChange = (event) => {
@@ -29,7 +41,7 @@ const NewUser = ({players}) => {
     <>
     <form id="quiz-player-name" onSubmit={handleNewUserNameEntry}>
       <label htmlFor="playerName" > Enter Player Name: </label>
-      <input type="text" id="playerName" value={name} onChange={handleNameChange}/>
+      <input type="text" id="playerName" defaultValue={name} onChange={handleNameChange}/>
       <input type="submit" />
     </form>
     </>
