@@ -36,16 +36,13 @@ public class Plant {
     @Column(name = "max_temperature")
     private int maxTemperature;
 
-    @Column(name = "alive_image_url")
-    private String aliveImageUrl;
-
-    @Column(name = "dead_image_url")
-    private String deadImageUrl;
+    @Column(name = "plant_image_url")
+    private String plantImageUrl;
 
     @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY)
     private List<Game> games;
 
-    public Plant(String commonName, String scientificName, String description, int wateringFrequency, int fertilisationFrequency, String lightRequirement, int minTemperature, int maxTemperature, String aliveImageUrl, String deadImageUrl) {
+    public Plant(String commonName, String scientificName, String description, int wateringFrequency, int fertilisationFrequency, String lightRequirement, int minTemperature, int maxTemperature, String plantImageUrl) {
         this.commonName = commonName;
         this.scientificName = scientificName;
         this.description = description;
@@ -54,8 +51,7 @@ public class Plant {
         this.lightRequirement = lightRequirement;
         this.minTemperature = minTemperature;
         this.maxTemperature = maxTemperature;
-        this.aliveImageUrl = aliveImageUrl;
-        this.deadImageUrl = deadImageUrl;
+        this.plantImageUrl = plantImageUrl;
         this.games = new ArrayList<>();
     }
 
@@ -134,20 +130,12 @@ public class Plant {
         this.maxTemperature = maxTemperature;
     }
 
-    public String getAliveImageUrl() {
-        return aliveImageUrl;
+    public String getPlantImageUrl() {
+        return plantImageUrl;
     }
 
-    public void setAliveImageUrl(String aliveImageUrl) {
-        this.aliveImageUrl = aliveImageUrl;
-    }
-
-    public String getDeadImageUrl() {
-        return deadImageUrl;
-    }
-
-    public void setDeadImageUrl(String deadImageUrl) {
-        this.deadImageUrl = deadImageUrl;
+    public void setPlantImageUrl(String aliveImageUrl) {
+        this.plantImageUrl = aliveImageUrl;
     }
 
     public List<Game> getGames() {
