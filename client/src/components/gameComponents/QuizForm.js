@@ -112,44 +112,44 @@ class QuizForm extends Component  {
     if (!this.props.isQuizFormActive) return null;
 
     return (
-
       <article className="plant-quiz">
+
       <div id="quiz-player-name">
-      <label htmlFor="playerName" > Enter Player Name: </label>
-      <input onChange={this.handlePlayerNameChange} type="text" id="playerName"/>
+        <label htmlFor="playerName" > Enter Player Name: </label>
+        <input onChange={this.handlePlayerNameChange} type="text" id="playerName"/>
       </div>
 
       <div id="quiz-watering">
-      <label htmlFor="watering" >Watering Frequency:</label>
-      <p>{this.state.wateringFrequency}</p>
-      <input onChange={this.handleWateringFrequencyChange} value={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
-      {this.renderAnswerSubmitButton("wateringFrequency")}
+        <label htmlFor="watering" >Watering Frequency:</label>
+        <p>{this.state.wateringFrequency}</p>
+        <input onChange={this.handleWateringFrequencyChange} defaultValue={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
+        {this.renderAnswerSubmitButton("wateringFrequency")}
       </div>
 
       <div id="quiz-fertilisation">
-      <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
-      <p>{this.state.fertilisationFrequency}</p>
-      <input onChange={this.handleFertilisationFrequencyChange} value={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
-      {this.renderAnswerSubmitButton("fertilisationFrequency")}
+        <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
+        <p>{this.state.fertilisationFrequency}</p>
+        <input onChange={this.handleFertilisationFrequencyChange} defaultValue={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
+        {this.renderAnswerSubmitButton("fertilisationFrequency")}
       </div>
 
       <div id="quiz-light">
-      <label htmlFor="light" >Light Requirement:</label>
-      <p>{this.state.lightRequirement}</p>
-      <select value={this.state.lightRequirement } onChange={this.handleLightRequirementChange} id="light" required>
-      <option selected disabled > Select... </option>
-      <option value="shade"> Shade </option>
-      <option value="indirect" >Indirect </option>
-      <option value="direct" >Direct </option>
-      </select>
-      {this.renderAnswerSubmitButton("lightRequirement")}
+        <label htmlFor="light" >Light Requirement:</label>
+        <p>{this.state.lightRequirement}</p>
+        <select defaultValue={this.state.lightRequirement } onChange={this.handleLightRequirementChange} id="light" required>
+          <option defaultValue disabled > Select... </option>
+          <option value="shade"> Shade </option>
+          <option value="indirect" >Indirect </option>
+          <option value="direct" >Direct </option>
+        </select>
+        {this.renderAnswerSubmitButton("lightRequirement")}
       </div>
 
       <div id="quiz-temperature">
-      <label htmlFor="temperature" >Temperature:</label>
-      <p>{this.state.temperature}</p>
-      <input onChange={this.handleTemperatureChange} value={this.state.temperature} type="range" id="temperature" min="0" max="50" />
-      {this.renderAnswerSubmitButton("temperature")}
+        <label htmlFor="temperature" >Temperature:</label>
+        <p>{this.state.temperature}</p>
+        <input onChange={this.handleTemperatureChange} defaultValue={this.state.temperature} type="range" id="temperature" min="0" max="50" />
+        {this.renderAnswerSubmitButton("temperature")}
       </div>
 
       </article>
