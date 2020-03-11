@@ -19,7 +19,7 @@ class HomeContainer  extends Component  {
     if (array.length >= 1){      
       return <SelectPlant plants={this.props.plants}/>
     } else {
-      return <NewUser />
+      return <NewUser players={this.props.players}/>
     }
   }
 
