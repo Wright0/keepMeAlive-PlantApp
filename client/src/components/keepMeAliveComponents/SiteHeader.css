@@ -1,4 +1,5 @@
 header {
+    margin: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,9 +10,11 @@ header > a {
     text-decoration: none;
 }
 header > a > h1 {
+    margin: 6px;
     color: #045206;
+    font-size: 2.25em;
 }
 
 header > h2 {
-    font-size: 1.2em;
+    font-size: 1em;
 }

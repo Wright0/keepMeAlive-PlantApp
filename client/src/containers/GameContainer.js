@@ -175,7 +175,7 @@ class GameContainer extends Component{
       return (
         <section className="game">
         <h2>Let's play:</h2>
-        <GamePlantImage/>
+        <GamePlantImage playerScore={this.state.playerScore}/>
         <h3>{this.state.plant.commonName}</h3>
         {timer}
         <HealthBar score={this.state.playerScore}/>

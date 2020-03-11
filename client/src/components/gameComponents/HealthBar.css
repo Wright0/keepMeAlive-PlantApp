@@ -1,36 +1,36 @@
 .health-container {
     position: relative;
-    height: 20px;
-    width: 350px;
+    height: 350px;
+    width: 20px;
     border-radius: 50px;
     border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
+
   .blue-filler {
     background:#0537c2;
-    height: 100%;
+    width: 100%;
     border-radius: inherit;
-    transition: width .2s ease-in;
-    width: 0;
+    transition: height .2s ease-in;
   }
   
   .green-filler {
     background:#045206;
-    height: 100%;
+    width: 100%;
     border-radius: inherit;
-    transition: width .2s ease-in;
-    width: 0;
+    transition: height .2s ease-in;
   }
   .red-filler {
     background:#850202;
-    height: 100%;
+    width: 100%;
     border-radius: inherit;
-    transition: width .2s ease-in;
-    width: 0;
+    transition: height .2s ease-in;
   }
   .yellow-filler {
     background:#8a9400;
-    height: 100%;
+    width: 100%;
     border-radius: inherit;
-    transition: width .2s ease-in;
-    width: 0;
+    transition: height .2s ease-in;
   }

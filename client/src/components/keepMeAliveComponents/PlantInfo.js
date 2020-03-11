@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import aloeVeraMedium from '../../assets/aloevera2.png';
 import { useParams, Link } from 'react-router-dom'
 import './PlantInfo.css'
 
@@ -36,9 +35,9 @@ const PlantInfo = () => {
 
       <figure>
         <img
-            src={aloeVeraMedium}
-            id="medium-aloe"
-            alt="Aloe vera plant"
+            src={plant.plantImageUrl}
+            className="select-plant"
+            alt={`${plant.commonName} plant.`}
           />
         <figcaption>Keep me alive!</figcaption>
       </figure>
