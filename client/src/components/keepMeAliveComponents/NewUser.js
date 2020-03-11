@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
-const NewUser = ({players}) => {
-  const [name, setName] = useState()
-
-  useEffect( () => { setLocalStorageNewUserIdFromDatabase() }, [players.length] )  
+const NewUser = ({players, fetchAllPlayers, checkPlayerIdIsInLocalStorage}) => {
+  const [name, setName] = useState()  
 
   const handleNewUserNameEntry = (event) => {
     event.preventDefault()    
@@ -21,13 +19,15 @@ const NewUser = ({players}) => {
         name: name
       })
     })
+    .then(res => res.json())
+    .then(({id}) => setLocalStorageNewUserIdFromDatabase(id))
   }
 
-  const setLocalStorageNewUserIdFromDatabase = () => {
-    const foundPlayer = players.find(player => player["name"] === name)
-    if (foundPlayer !== undefined) {
-      localStorage.setItem('playerId', foundPlayer.id)
-    }
+  const setLocalStorageNewUserIdFromDatabase = (id) => {
+      localStorage.setItem('playerId', id)
+      checkPlayerIdIsInLocalStorage(id)
+      // (props.)didTheSetPlayerThang()
+      console.log("im in the set local storage")
   }
 
   const handleNameChange = (event) => {

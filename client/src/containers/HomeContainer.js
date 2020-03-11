@@ -7,21 +7,29 @@ class HomeContainer  extends Component  {
     super(props)
   }
 
-  componentDidUpdate(prevProps, prevState){
-    this.checkPlayerIdIsInLocalStorage()
-  }
+  // componentDidUpdate(prevProps, prevState){
+  //   if (prevProps !== this.props.players){
+  //     this.checkPlayerIdIsInLocalStorage()
+  //   }
+  // }
 
-  checkPlayerIdIsInLocalStorage = () => {
-    const array = []
-    this.props.players.find(player => {
-      if (player["id"] === parseInt(localStorage.getItem('playerId'))) {        
-        array.push(player)
-      }
-    })
-    if (array.length >= 1){      
+  checkPlayerIdIsInLocalStorage = (id) => {
+    // const array = []
+    // this.props.players.find(player => {
+    //   if (player["id"] === parseInt(localStorage.getItem('playerId'))) {        
+    //     array.push(player)
+    //   }
+    // })
+    // console.log("im watching for the local storage")
+    if (id === parseInt(localStorage.getItem('playerId'))) {      
       return <SelectPlant plants={this.props.plants}/>
     } else {
-      return <NewUser players={this.props.players}/>
+      console.log("ID DOESNT MATCH")
+      return <NewUser 
+        checkPlayerIdIsInLocalStorage={this.checkPlayerIdIsInLocalStorage} 
+        players={this.props.players} 
+        fetchAllPlayers={this.props.fetchAllPlayers}
+      />
     }
   }
 

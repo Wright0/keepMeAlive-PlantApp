@@ -27,14 +27,14 @@ class KeepMeAliveContainer extends Component {
       .catch(err => console.error)
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if (prevState.players !== this.state.players){
+  fetchAllPlayers = () => {
+    // if (prevState.players !== this.state.players){
       fetch('http://localhost:8080/players')
       .then(response => response.json())
       .then(playersObject => playersObject._embedded.players)
       .then(playersArray => this.setState({players: playersArray}))
       .catch(err => console.error)
-    }
+    // }
   }
 
   render(){
@@ -46,7 +46,7 @@ class KeepMeAliveContainer extends Component {
             <Route exact path="/"
               render={() =>
               <HomeContainer
-              plants={this.state.plants} players={this.state.players}
+              plants={this.state.plants} players={this.state.players} fetchAllPlayers={this.fetchAllPlayers}
               />}
             />
           <Route path="/:plantId/game" component={GameContainer}/>
