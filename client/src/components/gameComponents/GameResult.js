@@ -10,7 +10,6 @@ const GameResult = ({playerScore, isQuizFormActive, playAgain, resetPlayerAnswer
       <h1>Game over!</h1>
       <p>Your score is: {playerScore}</p>
 
-
       <button className="navigate" onClick={(playAgain)}>PLAY AGAIN</button>
       <Link to={"/"}><button className="navigate" onClick={(resetPlayerAnswers)}>PICK A NEW PLANT</button></Link>
     </section>

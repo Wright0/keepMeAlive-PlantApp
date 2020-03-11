@@ -184,8 +184,11 @@ class GameContainer extends Component{
               <GamePlantImage playerScore={this.state.playerScore}/>
               <HealthBar score={this.state.playerScore}/>
             </div>
-
-            {quizForm}
+          <div> 
+          
+          {quizForm}
+          </div>
+            
 
             <GameResult
               playerScore={this.state.playerScore}
