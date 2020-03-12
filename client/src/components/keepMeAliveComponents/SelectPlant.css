@@ -42,6 +42,11 @@ section.select-plant li {
    cursor: pointer;
 }
 
+section.select-plant li:hover {
+    border: 4px solid #DEDEDE;
+    background: #f3fef4;
+ }
+
 section.select-plant li > img {
     max-height: 275px;
  }

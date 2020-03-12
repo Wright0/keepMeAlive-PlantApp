@@ -26,8 +26,8 @@ article.plant-quiz > div > label {
     margin: 5px 7px;
 }
 
-article.plant-quiz > div > input {
-    margin: 5px 7px;
+article.plant-quiz > div.quiz-light > input {
+    margin: 0px 7px 0px 2px
 }
 
 article.plant-quiz > div > button {
