@@ -40,7 +40,6 @@ class KeepMeAliveContainer extends Component {
       return player.id === parseInt(localStorage.getItem('playerId'))
     }
     )){
-      console.log("id is in local storage")
       return true
     } else {
       return false

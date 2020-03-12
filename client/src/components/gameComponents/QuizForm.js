@@ -129,7 +129,7 @@ class QuizForm extends Component  {
         {this.renderAnswerSubmitButton("fertilisationFrequency")}
       </div>
 
-      <div id="quiz-light">
+      <div className="quiz-light">
         <p>Light:</p>
         
         <input type="radio" id="shade" name="light-requirements" value="shade" onChange={this.handleLightRequirementChange}/>

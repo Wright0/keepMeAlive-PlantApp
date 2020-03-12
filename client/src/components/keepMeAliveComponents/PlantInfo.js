@@ -18,6 +18,8 @@ const PlantInfo = () => {
   useEffect( () => {
     getPlant();
   }, [])
+
+  if(!plant.commonName) return null;
   
   return (
     <article className="plant-info">
