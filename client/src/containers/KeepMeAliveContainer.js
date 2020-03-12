@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import PlantInfo from '../components/keepMeAliveComponents/PlantInfo.js';
 import GameContainer from './GameContainer.js';
 import SiteHeader from '../components/keepMeAliveComponents/SiteHeader.js';
@@ -37,10 +37,23 @@ class KeepMeAliveContainer extends Component {
     // }
   }
 
-  
+  isPlayerIdInLocalstorage = () => {
+    if(this.state.players.find(player => {
+      console.log(player.id, '===', parseInt(localStorage.getItem('playerId')))
+      return player.id === parseInt(localStorage.getItem('playerId'))
+    }
+    )){
+      console.log('true')
+      return true
+    } else {
+      return false
+    }
+  }
 
   render(){
-
+    if(!this.state.players.length){
+      return null
+    }
 
     return (
       <>
@@ -53,9 +66,10 @@ class KeepMeAliveContainer extends Component {
               plants={this.state.plants} players={this.state.players} fetchAllPlayers={this.fetchAllPlayers}
               />}
             />
-          <Route path="/:plantId/game" component={GameContainer}/>
+            <Route path="/:plantId/game" render={({match}) => this.isPlayerIdInLocalstorage() ?<GameContainer match={match} /> : <Redirect to="/" />} />
+     
 
-          <Route path="/:plantId" component={PlantInfo}/>
+            <Route exact path="/:plantId" render={({match}) => this.isPlayerIdInLocalstorage() ?<PlantInfo match={match} /> : <Redirect to="/" />} />
           </Switch>
         </Router>
 
