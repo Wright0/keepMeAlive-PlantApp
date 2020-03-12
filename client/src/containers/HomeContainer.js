@@ -5,30 +5,23 @@ import NewUser from '../components/keepMeAliveComponents/NewUser.js'
 class HomeContainer  extends Component  {
   constructor(props) {
     super(props)
+
+    this.state = {
+      isIdPresent: false
+    }
   }
 
-  // componentDidUpdate(prevProps, prevState){
-  //   if (prevProps !== this.props.players){
-  //     this.checkPlayerIdIsInLocalStorage()
-  //   }
-  // }
+  changeIsIdPresent = (status) => {
+    this.setState({isIdPresent: status})
+  }
 
   checkPlayerIdIsInLocalStorage = (id) => {
-    // const array = []
-    // this.props.players.find(player => {
-    //   if (player["id"] === parseInt(localStorage.getItem('playerId'))) {        
-    //     array.push(player)
-    //   }
-    // })
-    // console.log("im watching for the local storage")
-    if (id === parseInt(localStorage.getItem('playerId'))) {      
+ 
+    if (parseInt(id) === parseInt(localStorage.getItem('playerId'))) { 
       return <SelectPlant plants={this.props.plants}/>
     } else {
-      console.log("ID DOESNT MATCH")
       return <NewUser 
-        checkPlayerIdIsInLocalStorage={this.checkPlayerIdIsInLocalStorage} 
-        players={this.props.players} 
-        fetchAllPlayers={this.props.fetchAllPlayers}
+        changeIsIdPresent={this.changeIsIdPresent}
       />
     }
   }
@@ -37,7 +30,7 @@ class HomeContainer  extends Component  {
     return (
       <>
       <h1>HOME CONTAINER</h1>
-      {this.checkPlayerIdIsInLocalStorage()}
+      {this.checkPlayerIdIsInLocalStorage(localStorage.getItem('playerId'))}
       </>
     )
   }

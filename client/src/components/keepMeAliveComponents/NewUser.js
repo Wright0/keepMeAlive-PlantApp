@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 
-const NewUser = ({players, fetchAllPlayers, checkPlayerIdIsInLocalStorage}) => {
+const NewUser = ({changeIsIdPresent}) => {
   const [name, setName] = useState()  
 
   const handleNewUserNameEntry = (event) => {
@@ -25,7 +25,7 @@ const NewUser = ({players, fetchAllPlayers, checkPlayerIdIsInLocalStorage}) => {
 
   const setLocalStorageNewUserIdFromDatabase = (id) => {
       localStorage.setItem('playerId', id)
-      checkPlayerIdIsInLocalStorage(id)
+      changeIsIdPresent(true)
       // (props.)didTheSetPlayerThang()
       console.log("im in the set local storage")
   }

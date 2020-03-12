@@ -158,6 +158,8 @@ class GameContainer extends Component{
     }
 
     render(){
+
+      
       // if (!this.props.isGameContainerActive) return null;
       let quizForm = null
       let timer = null
