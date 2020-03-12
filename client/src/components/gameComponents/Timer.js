@@ -7,7 +7,7 @@ export default class Timer extends Component {
 
     super(props)
     this.state = {
-      seconds: 300
+      seconds: 45
     }
   }
 
@@ -16,10 +16,10 @@ export default class Timer extends Component {
       if (this.props.score === 0) {
         this.props.reduceScoreByTimer()
       }
-      if (this.state.seconds === 20 ){
+      if (this.state.seconds === 30 ){
         this.props.reduceScoreByTimer()
       }
-      if (this.state.seconds === 10 ){
+      if (this.state.seconds === 15 ){
         this.props.reduceScoreByTimer()
       }
      
@@ -53,7 +53,7 @@ export default class Timer extends Component {
   render() {
     return (
       <section className="timer">
-        <p>Quick! You'll lose a point every 10 seconds!</p>
+        <p>Quick! You'll lose a point every 15 seconds!</p>
         <h3>Time Remaining: {this.state.seconds} seconds</h3>
         {this.timesUpNotification()}
       </section>
