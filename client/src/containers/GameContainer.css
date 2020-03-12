@@ -1,10 +1,55 @@
-section.game {
-
+section.game-page {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    padding: 25px;
-    max-width: 500px;
-    margin: 0 auto;
+    align-items: center;
 }
 
+section.game-page section.game {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+section.game > div.game-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section.game > div.game-header > h1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2em;
+}
+
+section.game div.plant {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 3em;
+}
+
+section.game div.game-play {
+    display: flex;
+    flex-direction: row;
+}
+
+section.game-page div.game-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    min-width: 450px;
+    min-height: 250px;
+    margin: 0 auto;
+    
+    padding: 8px;
+    /* background-color: #ECECEC; */
+    border: 2px solid #DEDEDE;
+    }

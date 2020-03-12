@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400|Spartan:300,400&display=swap');
 
 body {
-  margin: 5em;
+  margin: 1.5em;
   font-family: 'Roboto', sans-serif;
   background-color: #FAFAFA ;
   -webkit-font-smoothing: antialiased;
@@ -20,4 +20,9 @@ button.navigate{
   height: 50px;
   font-size: 14px;
   cursor: pointer;
+  margin: 10px;
+}
+
+button:focus{
+  outline: 3px solid #424246;
 }

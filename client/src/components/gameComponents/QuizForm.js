@@ -108,42 +108,51 @@ class QuizForm extends Component  {
   }
 
   render(){
-
     if (!this.props.isQuizFormActive) return null;
 
     return (
       <article className="plant-quiz">
 
+<<<<<<< HEAD
+=======
+        <p>What does this plant need?</p>
+
+
+>>>>>>> develop
       <div id="quiz-watering">
-        <label htmlFor="watering" >Watering Frequency:</label>
+        <label htmlFor="watering" >Waterings a month:</label>
         <p>{this.state.wateringFrequency}</p>
-        <input onChange={this.handleWateringFrequencyChange} defaultValue={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
+        <input onChange={this.handleWateringFrequencyChange} defaultValue={this.state.wateringFrequency} type="range" id="watering" min="0" max="8" />
         {this.renderAnswerSubmitButton("wateringFrequency")}
       </div>
 
       <div id="quiz-fertilisation">
-        <label htmlFor="fertilisation" >Fertilisation Frequency:</label>
+        <label htmlFor="fertilisation" >Fertilisations a month:</label>
         <p>{this.state.fertilisationFrequency}</p>
-        <input onChange={this.handleFertilisationFrequencyChange} defaultValue={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
+        <input onChange={this.handleFertilisationFrequencyChange} defaultValue={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="8" />
         {this.renderAnswerSubmitButton("fertilisationFrequency")}
       </div>
 
       <div id="quiz-light">
-        <label htmlFor="light" >Light Requirement:</label>
-        <p>{this.state.lightRequirement}</p>
-        <select defaultValue={this.state.lightRequirement } onChange={this.handleLightRequirementChange} id="light" required>
-          <option defaultValue disabled > Select... </option>
-          <option value="shade"> Shade </option>
-          <option value="indirect" >Indirect </option>
-          <option value="direct" >Direct </option>
-        </select>
+        <p>Light:</p>
+        
+        <input type="radio" id="shade" name="light-requirements" value="shade" onChange={this.handleLightRequirementChange}/>
+        <label htmlFor="shade">Shade</label>
+        
+        <input type="radio" id="indirect" name="light-requirements" value="indirect" onChange={this.handleLightRequirementChange}/>
+        <label htmlFor="indirect">Indirect light</label>
+
+        <input type="radio" id="direct" name="light-requirements" value="direct" onChange={this.handleLightRequirementChange}/>
+        <label htmlFor="direct">Direct Light</label>
+    
         {this.renderAnswerSubmitButton("lightRequirement")}
       </div>
+      
 
       <div id="quiz-temperature">
         <label htmlFor="temperature" >Temperature:</label>
         <p>{this.state.temperature}</p>
-        <input onChange={this.handleTemperatureChange} defaultValue={this.state.temperature} type="range" id="temperature" min="0" max="50" />
+        <input onChange={this.handleTemperatureChange} defaultValue={this.state.temperature} type="range" id="temperature" min="0" max="35" />
         {this.renderAnswerSubmitButton("temperature")}
       </div>
 

@@ -1,0 +1,10 @@
+section.timer {
+    text-align: center;
+    border-bottom: 1px solid #045206;
+    padding: 10px 0px;
+    margin: 10px;
+}
+
+section.timer h3 {
+    margin: 10px;
+}

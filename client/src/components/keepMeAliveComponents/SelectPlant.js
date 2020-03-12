@@ -1,5 +1,4 @@
 import React from 'react';
-import aloeVeraMedium from '../../assets/aloevera2.png';
 import { Link } from 'react-router-dom';
 import './SelectPlant.css';
 
@@ -12,9 +11,9 @@ const SelectPlant = ({plants}) => {
         value={plant.id}
       >
         <img
-          src={aloeVeraMedium}
-          className="aloe-vera"
-          alt="Aloe vera plant"
+          src={plant.plantImageUrl}
+          className="select-plant"
+          alt={`${plant.commonName} plant.`}
         />
         <p>{ plant.commonName }</p>
       </li>
@@ -24,6 +23,7 @@ const SelectPlant = ({plants}) => {
 
   return (
     <section className="select-plant">
+      <p>Learn how to keep different plants alive and then test your knowledge.</p>
       <h2>SELECT A PLANT:</h2>
       <ul>
         { plantItems }
