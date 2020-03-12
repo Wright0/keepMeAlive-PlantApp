@@ -28,22 +28,18 @@ class KeepMeAliveContainer extends Component {
   }
 
   fetchAllPlayers = () => {
-    // if (prevState.players !== this.state.players){
       fetch('http://localhost:8080/players')
       .then(response => response.json())
       .then(playersObject => playersObject._embedded.players)
       .then(playersArray => this.setState({players: playersArray}))
       .catch(err => console.error)
-    // }
   }
 
   isPlayerIdInLocalstorage = () => {
     if(this.state.players.find(player => {
-      console.log(player.id, '===', parseInt(localStorage.getItem('playerId')))
       return player.id === parseInt(localStorage.getItem('playerId'))
     }
     )){
-      console.log('true')
       return true
     } else {
       return false

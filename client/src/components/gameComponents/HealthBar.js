@@ -22,7 +22,7 @@ function HealthBar({score}) {
   }
 
   return (
-    <section class="health-bar-container">
+    <section className="health-bar-container">
 
       <div className="health-bar">
         <div className={fillerClass()} style={{height: `${scoreInPercentage}%`}}/>
