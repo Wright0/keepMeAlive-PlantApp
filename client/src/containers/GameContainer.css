@@ -1,8 +1,15 @@
-section.game {
+section.game-page {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+section.game-page section.game {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 
 section.game > div.game-header {
     display: flex;
@@ -32,3 +39,17 @@ section.game div.game-play {
     flex-direction: row;
 }
 
+section.game-page div.game-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    min-width: 450px;
+    min-height: 250px;
+    margin: 0 auto;
+    
+    padding: 8px;
+    /* background-color: #ECECEC; */
+    border: 2px solid #DEDEDE;
+    }

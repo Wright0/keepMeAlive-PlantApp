@@ -168,36 +168,37 @@ class GameContainer extends Component{
         setGameInputStatus = {this.setGameInputStatus}
         watchAndSetGameStatus = {this.watchAndSetGameStatus}
         />
-        timer = <Timer score={this.state.playerScore} reduceScoreByTimer={this.reduceScoreByTimer} setGameInputStatus={this.setGameInputStatus}/>
+
+        timer = <Timer 
+          score={this.state.playerScore} 
+          reduceScoreByTimer={this.reduceScoreByTimer} 
+          setGameInputStatus={this.setGameInputStatus}
+        />
       }
 
       return (
-        <section className="game">
+        <section className="game-page">
           
-          <div className="game-header">
           <h1>{this.state.plant.commonName}</h1>
-            {timer}
-          </div>
-
-          <div className="game-play"> 
+          
+          <section className="game">
             <div className="plant">
               <GamePlantImage playerScore={this.state.playerScore}/>
               <HealthBar score={this.state.playerScore}/>
             </div>
-          <div> 
-          
-          {quizForm}
-          </div>
-            
 
-            <GameResult
-              playerScore={this.state.playerScore}
-              isQuizFormActive={this.state.isQuizFormActive}
-              resetPlayerAnswers={this.resetPlayerAnswers}
-              playAgain={this.playAgain}
-            />
-          </div>
-          
+            <div className="game-box">
+              {timer}
+              {quizForm}
+      
+              <GameResult
+                playerScore={this.state.playerScore}
+                isQuizFormActive={this.state.isQuizFormActive}
+                resetPlayerAnswers={this.resetPlayerAnswers}
+                playAgain={this.playAgain}
+              />
+            </div>
+          </section>  
         </section>
       )
     }

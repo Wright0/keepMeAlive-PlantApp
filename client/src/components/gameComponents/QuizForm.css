@@ -7,10 +7,6 @@ justify-content: center;
 min-width: 450px;
 min-height: 250px;
 margin: 0 auto;
-
-padding: 8px;
-background-color: #ECECEC;
-border: 1px solid #424246;
 }
 
 article.plant-quiz > div {

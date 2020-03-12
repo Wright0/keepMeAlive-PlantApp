@@ -113,18 +113,20 @@ class QuizForm extends Component  {
     return (
       <article className="plant-quiz">
 
+        <p>What does this plant need?</p>
+
 
       <div id="quiz-watering">
         <label htmlFor="watering" >Waterings a month:</label>
         <p>{this.state.wateringFrequency}</p>
-        <input onChange={this.handleWateringFrequencyChange} defaultValue={this.state.wateringFrequency} type="range" id="watering" min="0" max="10" />
+        <input onChange={this.handleWateringFrequencyChange} defaultValue={this.state.wateringFrequency} type="range" id="watering" min="0" max="8" />
         {this.renderAnswerSubmitButton("wateringFrequency")}
       </div>
 
       <div id="quiz-fertilisation">
         <label htmlFor="fertilisation" >Fertilisations a month:</label>
         <p>{this.state.fertilisationFrequency}</p>
-        <input onChange={this.handleFertilisationFrequencyChange} defaultValue={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="10" />
+        <input onChange={this.handleFertilisationFrequencyChange} defaultValue={this.state.fertilisationFrequency} type="range" id="fertilisation" min="0" max="8" />
         {this.renderAnswerSubmitButton("fertilisationFrequency")}
       </div>
 
@@ -147,7 +149,7 @@ class QuizForm extends Component  {
       <div id="quiz-temperature">
         <label htmlFor="temperature" >Temperature:</label>
         <p>{this.state.temperature}</p>
-        <input onChange={this.handleTemperatureChange} defaultValue={this.state.temperature} type="range" id="temperature" min="0" max="50" />
+        <input onChange={this.handleTemperatureChange} defaultValue={this.state.temperature} type="range" id="temperature" min="0" max="35" />
         {this.renderAnswerSubmitButton("temperature")}
       </div>
 
