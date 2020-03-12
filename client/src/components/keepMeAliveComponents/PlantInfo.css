@@ -1,15 +1,12 @@
 article.plant-info {
     max-width: 45em;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr 3.7fr 1fr;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+
 }
 
-article.plant-info > h1 {
-    grid-column: 1/3;
-    grid-row: 1/2;
-
+article.plant-info > h1, h2 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,21 +14,22 @@ article.plant-info > h1 {
     margin: 10px;
 }
 
-#medium-aloe {
-    height: 175px;
+article.plant-info > h2 {
+    font-size: 1em;
+    font-style: italic;
+    color: #045206;
 }
 
-article > section.plant-facts {
-    grid-column: 1/2;
-    grid-row: 2/3;
-
-    padding: 10px;
+article.plant-info > section.plant-facts {
+    display: flex;
+    flex-direction: row;
 }
 
-article > figure {
-    grid-row: 2/3;
-    grid-column: 2/3;
+section.plant-facts > p{
+    padding: 0 20px;
+}
 
+article.plant-info > section > figure {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,28 +38,23 @@ article > figure {
     border: 2px solid #DEDEDE;
     margin: 10px;
 
-    max-height: 250px;
+    min-height: 240px;
+    min-width: 300px;
 }
 
-article > figure > img {
+article > section > figure > img {
     max-height: 200px;
 }
 
-article > figure > figcaption {
-    margin: 5px;
+article > section figure > figcaption {
+    margin: 10px;
 }
 
 article.plant-info > section.plant-care-instructions {
-    grid-column: 1/3;
-    grid-row: 3/4;
-
     padding: 10px;
 }
 
 article > #plant-info-buttons {
-    grid-row: 4/5;
-    grid-column: 1/3;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,5 +76,5 @@ article.plant-info dt {
 }
 
 article.plant-info >  section.plant-care-instructions > h2 {
-    margin: 5px 0px;
+    margin: 0px 0px;
 }

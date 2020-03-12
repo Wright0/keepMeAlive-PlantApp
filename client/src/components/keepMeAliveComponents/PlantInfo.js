@@ -23,24 +23,23 @@ const PlantInfo = () => {
     <article className="plant-info">
 
       <h1>{plant.commonName}</h1>
+      <h2>{plant.scientificName}</h2>
 
       <section className="plant-facts">
-        <dl id="plant-scientific-name">
-          <dt>Scientific Name: </dt>
-          <dd>{plant.scientificName}</dd>
-        </dl>
-
         <p>{plant.description}</p>
+
+        <figure>
+           <img
+              src={plant.plantImageUrl}
+              className="select-plant"
+              alt={`${plant.commonName} plant.`}
+              />
+            <figcaption>Keep Me Alive!</figcaption>
+        </figure>
+
       </section>
 
-      <figure>
-        <img
-            src={plant.plantImageUrl}
-            className="select-plant"
-            alt={`${plant.commonName} plant.`}
-          />
-        <figcaption>Keep me alive!</figcaption>
-      </figure>
+      
 
       <section className="plant-care-instructions">
         <h2>Care instructions:</h2>

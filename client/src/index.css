@@ -26,3 +26,7 @@ button.navigate{
 button:focus{
   outline: 3px solid #424246;
 }
+
+input:focus{
+  outline: 3px solid #424246;
+}

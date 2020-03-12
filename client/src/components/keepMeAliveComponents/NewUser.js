@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import './NewUser.css'
 
 const NewUser = ({changeIsIdPresent}) => {
   const [name, setName] = useState()  
@@ -33,10 +34,10 @@ const NewUser = ({changeIsIdPresent}) => {
   }
   return (
     <>
-    <form id="quiz-player-name" onSubmit={handleNewUserNameEntry}>
+    <form className="quiz-player-name" onSubmit={handleNewUserNameEntry}>
       <label htmlFor="playerName" > Enter Player Name: </label>
-      <input type="text" id="playerName" defaultValue={name} onChange={handleNameChange}/>
-      <input type="submit" />
+      <input required className="name-box" type="text" id="playerName" defaultValue={name} onChange={handleNameChange}/>
+      <input className="submit-name" type="submit" />
     </form>
     </>
   )
