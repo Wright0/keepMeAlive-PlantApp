@@ -48,4 +48,9 @@ section.select-plant li > img {
 
 section.select-plant li > * {
     pointer-events: none;
-  }
+
+}
+
+section.select-plant > ul > a {
+  text-decoration: none;
+}
