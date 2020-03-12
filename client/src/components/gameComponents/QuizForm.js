@@ -42,7 +42,6 @@ class QuizForm extends Component  {
         this.props.watchAndSetGameStatus(arrayOfButtonTruth)
       })
     }
-    // this.props.setGameInputStatus(false)
   }
 
   resetSubmitButtons = () => {
@@ -113,12 +112,9 @@ class QuizForm extends Component  {
     return (
       <article className="plant-quiz">
 
-<<<<<<< HEAD
-=======
         <p>What does this plant need?</p>
 
 
->>>>>>> develop
       <div id="quiz-watering">
         <label htmlFor="watering" >Waterings a month:</label>
         <p>{this.state.wateringFrequency}</p>
@@ -162,6 +158,5 @@ class QuizForm extends Component  {
 
 }
 
-//2 functions get sent down from Game container: savePlayersAnswers + savePlayersName. These are both used in a function here which bundles answers (event.target.value) into the format we need and send it back up to game container.
 
 export default QuizForm;

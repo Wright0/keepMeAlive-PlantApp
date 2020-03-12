@@ -5,8 +5,6 @@ import GamePlantImage from '../components/gameComponents/GamePlantImage.js';
 import Timer from '../components/gameComponents/Timer.js'
 import HealthBar from '../components/gameComponents/HealthBar.js'
 import './GameContainer.css';
-import { Redirect } from 'react-router-dom';
-// import { Link } from 'react-router-dom'
 
 class GameContainer extends Component{
   constructor(props){
@@ -165,15 +163,7 @@ class GameContainer extends Component{
     }
 
     render(){
-      let redirect = null
-      if (
-        this.state.players.find(player => player.id === parseInt(localStorage.getItem('playerId')))
-        
-        ){
-          redirect = <Redirect to="/" />
-        }
-
-      // if (!this.props.isGameContainerActive) return null;
+     
       let quizForm = null
       let timer = null
       if (this.state.isQuizFormActive) {

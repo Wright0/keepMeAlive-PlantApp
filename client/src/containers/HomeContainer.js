@@ -29,7 +29,6 @@ class HomeContainer  extends Component  {
   render(){
     return (
       <>
-      <h1>HOME CONTAINER</h1>
       {this.checkPlayerIdIsInLocalStorage(localStorage.getItem('playerId'))}
       </>
     )

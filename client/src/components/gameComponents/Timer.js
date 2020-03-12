@@ -22,12 +22,7 @@ export default class Timer extends Component {
       if (this.state.seconds === 10 ){
         this.props.reduceScoreByTimer()
       }
-      // if (this.state.seconds === 15 ){
-      //   this.props.reduceScoreByTimer()
-      // }
-      // if (this.state.seconds === 0 ){
-      //   this.props.reduceScoreByTimer()
-      // }
+     
     }
   }
 
