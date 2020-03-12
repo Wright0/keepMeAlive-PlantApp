@@ -26,7 +26,6 @@ const NewUser = ({changeIsIdPresent}) => {
   const setLocalStorageNewUserIdFromDatabase = (id) => {
       localStorage.setItem('playerId', id)
       changeIsIdPresent(true)
-      console.log("im in the set local storage")
   }
 
   const handleNameChange = (event) => {
