@@ -15,10 +15,6 @@ section.select-plant > p {
     font-size: 1em;
 }
 
-.aloe-vera {
-    width: 100px;
-}
-
 section.select-plant > ul {
     margin: 10px;
     padding: 0px;
@@ -45,6 +41,10 @@ section.select-plant li {
 
    cursor: pointer;
 }
+
+section.select-plant li > img {
+    max-height: 275px;
+ }
 
 section.select-plant li > * {
     pointer-events: none;
