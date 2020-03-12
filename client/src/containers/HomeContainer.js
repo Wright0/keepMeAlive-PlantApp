@@ -11,6 +11,12 @@ class HomeContainer  extends Component  {
     }
   }
 
+  componentDidUpdate(prevProps, prevState){
+    if(prevState !== this.state){
+      this.props.fetchAllPlayers()
+    }
+  }
+
   changeIsIdPresent = (status) => {
     this.setState({isIdPresent: status})
   }

@@ -40,6 +40,7 @@ class KeepMeAliveContainer extends Component {
       return player.id === parseInt(localStorage.getItem('playerId'))
     }
     )){
+      console.log("id is in local storage")
       return true
     } else {
       return false
@@ -62,7 +63,7 @@ class KeepMeAliveContainer extends Component {
               plants={this.state.plants} players={this.state.players} fetchAllPlayers={this.fetchAllPlayers}
               />}
             />
-            <Route path="/:plantId/game" render={({match}) => this.isPlayerIdInLocalstorage() ?<GameContainer match={match} /> : <Redirect to="/" />} />
+            <Route exact path="/:plantId/game" render={({match}) => this.isPlayerIdInLocalstorage() ?<GameContainer match={match} /> : <Redirect to="/" />} />
      
 
             <Route exact path="/:plantId" render={({match}) => this.isPlayerIdInLocalstorage() ?<PlantInfo match={match} /> : <Redirect to="/" />} />
