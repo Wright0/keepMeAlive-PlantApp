@@ -1,6 +1,9 @@
 package com.codeclan.example.server.models;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +21,7 @@ public class Plant {
     @Column(name = "scientific_name")
     private String scientificName;
 
+    @Size(max = 1000000)
     @Column(name = "description")
     private String description;
 

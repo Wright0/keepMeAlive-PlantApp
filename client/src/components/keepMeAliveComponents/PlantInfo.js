@@ -26,7 +26,7 @@ const PlantInfo = () => {
 
       <section className="plant-facts">
         <dl id="plant-scientific-name">
-          <dt>scientific name: </dt>
+          <dt>Scientific Name: </dt>
           <dd>{plant.scientificName}</dd>
         </dl>
 
