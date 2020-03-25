@@ -2,6 +2,8 @@
 
 ## Project overview
 
+https://keep-me-alive-plant.herokuapp.com/
+
 Team project | React.js - Spring - PostgreSQL | 7 day project
 
 An app that teaches users how to take care of different plants, and then test their knowledge in an interactive quiz-style game where they try to keep that plant alive.
