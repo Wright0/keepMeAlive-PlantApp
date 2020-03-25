@@ -1,5 +1,7 @@
 # Keep Me Alive - Plant app
 
+![Keep Me Alive](https://imgur.com/Gb8SNZh.png)
+
 ## Project overview
 
 https://keep-me-alive-plant.herokuapp.com/
