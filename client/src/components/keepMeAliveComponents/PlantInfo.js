@@ -17,7 +17,7 @@ const PlantInfo = () => {
 
   useEffect( () => {
     getPlant();
-  }, [])
+  }, [plant])
 
   if(!plant.commonName) return null;
   
@@ -40,8 +40,6 @@ const PlantInfo = () => {
         </figure>
 
       </section>
-
-      
 
       <section className="plant-care-instructions">
         <h2>Care instructions:</h2>
