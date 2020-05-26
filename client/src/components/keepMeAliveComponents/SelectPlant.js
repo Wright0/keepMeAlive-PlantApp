@@ -6,7 +6,7 @@ const SelectPlant = ({plants}) => {
 
   const plantItems = plants.map(plant => {
     return (
-    <Link to={`/${plant.id}`} key={plant.id}>
+    <Link to={`/plant/${plant.id}`} key={plant.id}>
       <li 
         value={plant.id}
       >

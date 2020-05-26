@@ -17,7 +17,7 @@ const PlantInfo = () => {
 
   useEffect( () => {
     getPlant();
-  }, [plant])
+  }, [])
 
   if(!plant.commonName) return null;
   
@@ -59,7 +59,7 @@ const PlantInfo = () => {
       </section>
 
       <div id="plant-info-buttons">
-        <Link to={`/${plantId}/game`}><button className="navigate">PLAY</button></Link>
+        <Link to={`/plant/${plantId}/game`}><button className="navigate">PLAY</button></Link>
         <Link to={"/"}><button className="navigate">PICK A DIFFERENT PLANT</button></Link> 
       </div>
 

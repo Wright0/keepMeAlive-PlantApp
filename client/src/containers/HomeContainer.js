@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import SelectPlant from '../components/keepMeAliveComponents/SelectPlant.js';
 import NewUser from '../components/keepMeAliveComponents/NewUser.js'
 
-class HomeContainer  extends Component  {
+class HomeContainer extends Component  {
   constructor(props) {
     super(props)
 
