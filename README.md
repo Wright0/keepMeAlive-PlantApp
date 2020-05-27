@@ -20,3 +20,5 @@ Some fun in game features:
 
 
 [Server code can be found here](https://github.com/Wright0/keepMeAlive-PlantApp-BE)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
