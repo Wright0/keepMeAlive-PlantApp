@@ -9,7 +9,7 @@ const PlantInfo = () => {
   let { plantId } = useParams()
 
   const getPlant = () => {
-    fetch(`http://localhost:8080/plants/${plantId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/plants/${plantId}`)
       .then(response => response.json())
       .then(plantObject => setPlant(plantObject))
       .catch(err => console.error)

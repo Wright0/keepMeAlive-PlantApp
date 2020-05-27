@@ -10,7 +10,7 @@ class KeepMeAliveContainer extends Component {
   }
 
   componentDidMount(){
-    fetch('http://localhost:8080/plants')
+    fetch(`${process.env.REACT_APP_API_URL}/plants`)
       .then(response => response.json())
       .then(plantsObject => plantsObject._embedded.plants)
       .then(plantsArray => this.setState({plants: plantsArray}))

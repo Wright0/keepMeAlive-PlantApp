@@ -17,8 +17,9 @@ function App() {
             <KeepMeAliveContainer/>
             }/>
 
-            <Route exact path="/plant/:plantId/game" render={() => 
-            <GameContainer />
+            {/* Because this Container is a class container, we need to use match to send down the URL params */}
+            <Route exact path="/plant/:plantId/game" render={({match}) => 
+            <GameContainer match={match} />
             }/>
 
             <Route exact path="/plant/:plantId" render={ () => 

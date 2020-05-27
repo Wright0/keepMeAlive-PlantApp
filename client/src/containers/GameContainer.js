@@ -10,7 +10,6 @@ class GameContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
-      players: [],
       plant: {},
       playerName: "",
       playerAnswers: {
@@ -25,14 +24,9 @@ class GameContainer extends Component{
   }
 
   componentDidMount(){
-    fetch(`http://localhost:8080/plants/${this.props.match.params.plantId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/plants/${this.props.match.params.plantId}`)
     .then(response => response.json())
     .then(plantObject => this.setState({plant: plantObject}))
-    .catch(err => console.error)
-    fetch('http://localhost:8080/players')
-    .then(response => response.json())
-    .then(playersObject => playersObject._embedded.players)
-    .then(playersArray => this.setState({players: playersArray}))
     .catch(err => console.error)
   }
 
