@@ -11,7 +11,6 @@ class GameContainer extends Component{
     super(props)
     this.state = {
       plant: {},
-      playerName: "",
       playerAnswers: {
         wateringFrequency: null,
         fertilisationFrequency: null,
